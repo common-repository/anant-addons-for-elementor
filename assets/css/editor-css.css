@@ -1,0 +1,94 @@
+.elementor-control-anant_section_pro .elementor-section-title {
+	color: #f54;
+}
+.anant-pro-feature {
+	color: #a4afb7;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	line-height: 1.8;
+	font-style: normal;
+}
+.anant-pro-feature a {
+	text-decoration: underline;
+	color: #f54 !important;
+}
+.elementor-panel .ant-icon:after {
+    content: 'A';
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Lexend', sans-serif;
+    background: #1D4DD4;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    margin: 3px;
+}
+.elementor-control[class*="pro_notice"] {
+    padding: 5px 0 15px 0 !important;
+}
+.elementor-control-raw-html.anant-pro-notice {
+    text-align: center;
+    background: aliceblue;
+    padding: 20px;
+}
+
+.anant-pro-popup-notice .elementor-control-field{
+    pointer-events: none;
+}
+.anant-pro-popup-notice label i {
+    color: #0036ff;
+    background-color: #fff;
+    font-size: 16px;
+    border-radius: 4px;
+    margin-left: 3px;
+}
+.anant-pro-popup-notice {
+    position: relative;
+}
+.anant-pro-popup-notice .elementor-control-content::before {
+    position: absolute;
+    content: 'This Option is Only Available in Pro Version';
+    padding: 15px;
+    box-shadow: 0px 0px 9px rgb(0 0 0 / 12%);
+    background: #ffffff;
+    z-index: 99999;
+    top: 35px;
+    color: #92003B;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    left: 3%;
+    visibility: hidden;
+    opacity: 0;
+    border-radius: 4px;
+    transition: all 0.5s;
+}
+.anant-pro-popup-notice .elementor-control-content:hover::before{
+    visibility: visible;
+    opacity: 1;
+}
+.elementor-control-demo_product_section .elementor-panel-heading-title.elementor-section-title:after, .elementor-control-demo_post_section .elementor-panel-heading-title.elementor-section-title:after{
+    content: 'A';
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Lexend', sans-serif;
+    background: #1D4DD4;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    margin: 3px;
+}
