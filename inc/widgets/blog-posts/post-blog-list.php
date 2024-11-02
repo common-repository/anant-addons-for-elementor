@@ -85,7 +85,7 @@ class AnantPostBlogList extends \Elementor\Widget_Base {
 		);
 
 		$this->add_control(
-			'anant_post_blog_pro_notice',
+			'anant_post_blog_list_pro_notice',
 			[
 				'raw' => 'Only Available in <a href="https://anantaddons.com/" target="_blank">Pro Version!</a>',
 				'type' => \Elementor\Controls_Manager::RAW_HTML,
@@ -136,7 +136,7 @@ class AnantPostBlogList extends \Elementor\Widget_Base {
 			]
 		);
 		$this->add_control(
-			'anant_post_blog_cat_pro_notice',
+			'anant_post_blog_list_cat_pro_notice',
 			[
 				'raw' => 'Only Available in <a href="https://anantaddons.com/" target="_blank">Pro Version!</a>',
 				'type' => \Elementor\Controls_Manager::RAW_HTML,
@@ -386,6 +386,75 @@ class AnantPostBlogList extends \Elementor\Widget_Base {
 				'default' => 'yes',
 			]
 		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'pagination',
+			[
+				'label' => __( 'Pagination Settings', 'anant-addons-for-elementor' ),
+				'tab'   => Controls_Manager::TAB_CONTENT, 
+				'condition' => [
+					'template_style' => ['layout_1']
+				],
+			]
+		);
+		$this->add_control(
+			'pagination_type',
+			[
+				'label' => esc_html__( 'Pagination', 'anant-addons-for-elementor' ),
+				'type' => \Elementor\Controls_Manager::SELECT2,
+				'label_block' => true,
+				'options'     => [
+					'none' => 'None',
+					'previous/next' => 'Previous/Next',
+					'numbers' => 'Numbers (Pro)',
+					'numbers+previous/next' => 'Numbers + Previous/Next (Pro)',
+				],
+				'default' => 'numbers',
+				'multiple'    => false,
+			]
+		);
+
+		$this->add_control(
+			'anant_post_blog_list_page_pro_notice',
+			[
+				'raw' => 'Only Available in <a href="https://anantaddons.com/" target="_blank">Pro Version!</a>',
+				'type' => \Elementor\Controls_Manager::RAW_HTML,
+				'content_classes' => 'anant-pro-notice',
+				'condition' => [ 
+                    'pagination_type!' => ['previous/next', 'none'],
+                ],
+			]
+		);
+
+		anant_alignment_control(
+			$this,
+			[
+				'key'       => 'pagination_align',
+				'options'   => [
+					'flex-start'   => [
+						'title' => __( 'Left', 'anant-addons-for-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'anant-addons-for-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					],
+					'flex-end'  => [
+						'title' => __( 'Right', 'anant-addons-for-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					],
+				],
+				'default'   => '',
+				'selectors' => [
+					'{{WRAPPER}} .navigation' => 'justify-content: {{VALUE}}',
+				],
+				'condition'   => [
+					'pagination_type!' => 'none',
+				],
+			]
+		); 
 
 		$this->end_controls_section();
 
@@ -1071,7 +1140,13 @@ class AnantPostBlogList extends \Elementor\Widget_Base {
 
 		$excerpt_length = $settings['excerpt_length']; 
 		$title_length = $settings['title_length']; 
-		$paged = get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : 1; 
+		$paged = (get_query_var('paged')) 
+		? absint(get_query_var('paged')) 
+			: (isset($_GET['paged']) 
+				? absint($_GET['paged']) 
+				: (get_query_var('page') 
+					? absint(get_query_var('page')) 
+					: 1));
 
 		$args = array(
 			'posts_per_page' => 5,
@@ -1139,7 +1214,7 @@ class AnantPostBlogList extends \Elementor\Widget_Base {
 						if ($template_style == 'layout_1') {
 							?>
 						<!-- blog list post -->
-						<div class="ant-small-post one <?php echo esc_attr($this->blog_list_class );?>" id="<?php echo get_the_ID(); ?>">
+						<div class="ant-small-post one <?php echo esc_attr($this->blog_list_class );?>" id="<?php echo esc_attr(get_the_ID()); ?>">
 							<?php 
 								$image_src = '';
 								if ($thumbnail_id) {
@@ -1153,7 +1228,7 @@ class AnantPostBlogList extends \Elementor\Widget_Base {
 								} else {
 									$bg = "background-image: url(". esc_url($image_src) .");";
 									?>
-										<div class="ant-img-small-post ant-back-img hlgr <?php echo esc_attr($this->blog_img) ;?>" style=" <?php echo $bg ?> ">
+										<div class="ant-img-small-post ant-back-img hlgr <?php echo esc_attr($this->blog_img) ;?>" style=" <?php echo esc_attr($bg) ?> ">
 									<?php
 								}
 							?> 
@@ -1161,7 +1236,7 @@ class AnantPostBlogList extends \Elementor\Widget_Base {
 								if( $show_date === 'yes' ) {
 									?>
 										<span class="ant-blog-date <?php echo esc_attr($this->blog_date );?>">
-											<a href="<?php echo get_day_link(get_post_time(''), get_post_time('m'), get_post_time('j'));  ?>" class="entry-date">
+											<a href="<?php echo esc_url(get_day_link(get_post_time(''), get_post_time('m'), get_post_time('j')));  ?>" class="entry-date">
 												<?php
 													the_time('j');
 													echo '<span>'; the_time('F');echo'</span>'; 
@@ -1183,7 +1258,7 @@ class AnantPostBlogList extends \Elementor\Widget_Base {
 										foreach($params['categories'] as $category ) {
 											$category = (array) $category;
 											?>
-												<a href="<?php echo  get_category_link( $category['term_id'] ) ?>"><?php echo esc_html($category['name']) ?></a>
+												<a href="<?php echo esc_url(get_category_link( $category['term_id'] )) ?>"><?php echo esc_html($category['name']) ?></a>
 											<?php
 										}
 									}
@@ -1194,13 +1269,13 @@ class AnantPostBlogList extends \Elementor\Widget_Base {
 									if ( $show_title === 'yes' ) {
 										// title_html_tag
 					
-										echo '<'.$title_html_tag.' class="title '.$this->blog_title.'">';
+										echo '<'.esc_attr($title_html_tag).' class="title '.esc_attr($this->blog_title).'">';
 										if ( $params['title_length'] > 0 ) {
 											?>
-												<a href="<?php echo esc_url(get_permalink()); ?>" title="<?php the_title_attribute(); ?>"><?php echo wp_trim_words(get_the_title(), 10, '' ); ?></a>
+												<a href="<?php echo esc_url(get_permalink()); ?>" title="<?php the_title_attribute(); ?>"><?php echo esc_html(wp_trim_words(get_the_title(), 10, '' )); ?></a>
 											<?php
 										}
-										echo '</'.$title_html_tag.'>';
+										echo '</'.esc_attr($title_html_tag).'>';
 									}
 								?>
 					
@@ -1209,7 +1284,7 @@ class AnantPostBlogList extends \Elementor\Widget_Base {
 										if( $show_author === 'yes' ) {
 											?>
 												<span class="ant-author">
-													<a href="<?php echo get_author_posts_url(get_the_author_meta( 'ID' )); ?>"><?php echo get_avatar(get_the_author_meta( 'ID') , 150); ?><?php the_author(); ?></a>
+													<a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta( 'ID' ))); ?>"><?php echo get_avatar(get_the_author_meta( 'ID') , 150); ?><?php the_author(); ?></a>
 												</span>
 											<?php
 										}
@@ -1221,7 +1296,7 @@ class AnantPostBlogList extends \Elementor\Widget_Base {
 													$text = 'Comments';
 												}
 											?>
-												<span class="ant-comments-link"> <a href="<?php comments_link(); ?>"><i class="far fa-comments"></i><?php echo get_comments_number(). ' ' ?></a> </span>
+												<span class="ant-comments-link"> <a href="<?php comments_link(); ?>"><i class="far fa-comments"></i><?php echo esc_html(get_comments_number(). ' ') ?></a> </span>
 											<?php
 										}
 									?>
@@ -1232,7 +1307,7 @@ class AnantPostBlogList extends \Elementor\Widget_Base {
 										?>
 											<div class="discription <?php echo esc_attr($this->blog_desc );?>">
 										<?php
-										echo wp_trim_words( get_the_content(), $params['excerpt_length'], '' );
+										echo wp_kses_post(anant_get_excerpt( $params['excerpt_length'], get_post() ));
 										?>
 											</div>
 										<?php
@@ -1251,8 +1326,58 @@ class AnantPostBlogList extends \Elementor\Widget_Base {
 		</div>
 		
 		<?php
+			if ('previous/next'=== $settings['pagination_type']) {
+				$this->anant_pagi_previous_next( $wp_query );
+			}
 			wp_reset_postdata();
 		?>
 		<?php
+	}
+
+	function custom_previous_posts_page_link( $paged ) {
+		if ( $paged > 1 ) {
+			$prev_page = $paged - 1;
+			return get_pagenum_link( $prev_page );
+		}
+		return false;
+	}
+	
+	function custom_next_posts_page_link( $paged, $max ) {
+		if ( $paged < $max ) {
+			$next_page = $paged + 1;
+			return get_pagenum_link( $next_page );
+		}
+		return false;
+	}
+	
+	
+	function anant_pagi_previous_next( $wp_query ) {
+		if( $wp_query->max_num_pages <= 1 ) return;
+	
+		$paged = (get_query_var('paged')) 
+			? absint(get_query_var('paged')) 
+				: (isset($_GET['paged']) 
+					? absint($_GET['paged']) 
+					: (get_query_var('page') 
+						? absint(get_query_var('page')) 
+						: 1));
+					
+		$max   = intval( $wp_query->max_num_pages );
+	
+		echo '<div class="anant-navigation navigation anant-pagi-p-n"><ul>' . "\n";
+		
+		// Previous link
+		$prev_link = $this->custom_previous_posts_page_link( $paged );
+		if ( $prev_link ) {
+			echo "<li><a href='". esc_url($prev_link) ."' class='page-numbers anant-pagi-pre-btn'>Previous</a></li>";
+		}
+	
+		// Next link
+		$next_link = $this->custom_next_posts_page_link( $paged, $max );
+		if ( $next_link ) {
+			echo "<li><a href='". esc_url($next_link) ."' class='page-numbers'>Next</a></li>";
+		}
+	
+		echo '</ul></div>' . "\n";
 	}
 }

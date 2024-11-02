@@ -91,7 +91,6 @@ class AnantProductStock extends \Elementor\Widget_Base {
 			'before_quantity_stock', [
 				'label' => __( 'Before Quantity', 'anant-addons-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( '' , 'anant-addons-for-elementor' ),
 				'label_block' => true,
 			]
 		);
@@ -129,7 +128,6 @@ class AnantProductStock extends \Elementor\Widget_Base {
 			'before_quantity_backorder', [
 				'label' => __( 'Before Quantity', 'anant-addons-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( '' , 'anant-addons-for-elementor' ),
 				'label_block' => true,
 			]
 		);
@@ -440,11 +438,11 @@ class AnantProductStock extends \Elementor\Widget_Base {
 		$backorder_quantity = $settings['backorder_quantity_toggle'] == 'yes' ? $product->get_stock_quantity() : '';
 
 		if( $status === 'instock' && $backorder == 'no' ){
-			echo '<div class="anant-product-stock"><a class="stock '.esc_attr( $availability['class'] ).'">'.esc_html($settings['before_quantity_stock']).'<span>'.$instock_quantity.'</span>'.esc_html($settings['after_quantity_stock']).'</a></div>';
+			echo '<div class="anant-product-stock"><a class="stock '.esc_attr( $availability['class'] ).'">'.esc_html($settings['before_quantity_stock']).'<span>'.esc_html($instock_quantity).'</span>'.esc_html($settings['after_quantity_stock']).'</a></div>';
 		}else if($status === 'instock' && ( $backorder == 'yes' || $backorder == 'notify' )){
-			echo '<div class="anant-product-stock"><a class="stock '.esc_attr( $availability['class'] ).'" >'.esc_html($settings['before_quantity_backorder']).'<span>'.$backorder_quantity.'</span>'.esc_html($settings['after_quantity_backorder']).'</a></div>';
+			echo '<div class="anant-product-stock"><a class="stock '.esc_attr( $availability['class'] ).'" >'.esc_html($settings['before_quantity_backorder']).'<span>'.esc_html($backorder_quantity).'</span>'.esc_html($settings['after_quantity_backorder']).'</a></div>';
 		}else{
-			echo '<div class="anant-product-stock '.esc_attr( $availability['class'] ).'"><a class="stock-out '.esc_attr( $availability['class'] ).'" >'.esc_html__($settings['out_of_stock_text'],'anant-addons-for-elementor').'</a></div>';
+			echo '<div class="anant-product-stock '.esc_attr( $availability['class'] ).'"><a class="stock-out '.esc_attr( $availability['class'] ).'" >'.esc_html($settings['out_of_stock_text'],'anant-addons-for-elementor').'</a></div>';
 		}
 
 	}

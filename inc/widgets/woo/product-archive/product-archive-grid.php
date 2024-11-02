@@ -270,13 +270,13 @@ class AnantProductArchiveGrid extends \Elementor\Widget_Base {
 		// Previous link
 		$prev_link = $this->custom_previous_posts_page_link( $paged );
 		if ( $prev_link ) {
-			echo "<li><a href='". $prev_link ."' class='page-numbers anant-pagi-pre-btn'>Previous</a></li>";
+			echo "<li><a href='". esc_url($prev_link) ."' class='page-numbers anant-pagi-pre-btn'>Previous</a></li>";
 		}
 	
 		// Next link
 		$next_link = $this->custom_next_posts_page_link( $paged, $max );
 		if ( $next_link ) {
-			echo "<li><a href='". $next_link ."' class='page-numbers'>Next</a></li>";
+			echo "<li><a href='". esc_url($next_link) ."' class='page-numbers'>Next</a></li>";
 		}
 	
 		echo '</ul></div>' . "\n";
@@ -583,17 +583,15 @@ class AnantProductArchiveGrid extends \Elementor\Widget_Base {
 			]
 		);
 
-		anant_switcher_control(
-			$this,
+		$this->add_control(
+			'anant_archive_product_pro_notice',
 			[
-				'key'       => 'show_all_number',
-				'label'     => 'Show All Number',
-				'on_label'  => 'Yes',
-				'off_label' => 'No',
-				'default' => 'yes',
-				'condition'   => [
-					'pagination_type' => ['numbers','numbers+previous/next']
-				],
+				'raw' => 'Only Available in <a href="https://anantaddons.com/" target="_blank">Pro Version!</a>',
+				'type' => \Elementor\Controls_Manager::RAW_HTML,
+				'content_classes' => 'anant-pro-notice',
+				'condition' => [ 
+                    'pagination_type!' => ['previous/next', 'none'],
+                ],
 			]
 		);
 

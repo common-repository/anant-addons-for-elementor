@@ -170,10 +170,10 @@ class AnantPostTitle extends \Elementor\Widget_Base {
 		$link = get_permalink($post_id);
 
         echo '<div class="anant-post-title ">';
-		echo '<'. $settings['post_title_tag'] .' class="single-post-title title">';
+		echo '<'. esc_attr($settings['post_title_tag']) .' class="single-post-title title">';
 			// echo '<a href="'.esc_attr($link).'" >'.esc_html($title).'</a>';
 			echo esc_html($title);
-		echo '</'. $settings['post_title_tag'] .'>';
+		echo '</'. esc_attr($settings['post_title_tag']) .'>';
         echo '</div>';
 
 	}

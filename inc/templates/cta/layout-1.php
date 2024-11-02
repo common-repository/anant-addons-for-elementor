@@ -33,8 +33,8 @@
 						<a
 							class="ant_cta_btn <?php echo $link_button_position === 'before' ? 'anant-no-flex': '' ?>"
 							href="<?php echo esc_url($link) ?>"
-							<?php echo $target ?>
-							<?php echo $nofollow ?>>
+							<?php echo esc_attr($target) ?>
+							<?php echo esc_attr($nofollow) ?>>
 							<?php 
 								if ($link_button_position === 'before') {
 									\Elementor\Icons_Manager::render_icon( $link_button_icon, [ 'aria-hidden' => 'true' ] );

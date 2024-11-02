@@ -71,7 +71,7 @@ class AnantWishlistCount extends Widget_Base {
         $this->add_control(
 			'anant_wishlish_icon',
 			[
-				'label' => esc_html__( 'Icon', 'plugin-name' ),
+				'label' => esc_html__( 'Icon', 'anant-addons-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::ICONS,
 				'default' => [
 					'value' => 'far fa-heart',

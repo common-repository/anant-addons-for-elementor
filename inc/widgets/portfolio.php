@@ -927,8 +927,8 @@ class Anant_Portfolio extends \Elementor\Widget_Base {
 		$card_icon = $settings['card_icon'];
 		$card_two_icon = $settings['card_two_icon'];
 		$link = $settings['card_link']['url'];
-		$target = $settings['card_link']['is_external'] ? ' target="_blank"' : '';
-		$nofollow = $settings['card_link']['nofollow'] ? ' rel="nofollow"' : '';
+		$target = $settings['card_link']['is_external'] ? ' target=_blank' : '';
+		$nofollow = $settings['card_link']['nofollow'] ? ' rel=nofollow' : '';
 
 		$template_card_style = $settings['template_card_style'];
 		$template_overlay_style = $settings['template_overlay_style'];

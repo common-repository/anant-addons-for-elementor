@@ -217,6 +217,44 @@ if ( ! function_exists( 'anant_get_attachment_alt' ) ) {
 	}
 }
 
+if ( ! function_exists( 'anant_get_excerpt' ) ) {
+
+    /**
+     * Generate clean excerpt.
+     *
+     */
+    function anant_get_excerpt( $length = 0, $post_obj = null ) {
+
+        global $post;
+
+        if ( is_null( $post_obj ) ) {
+            $post_obj = $post;
+        }
+
+        $length = absint( $length );
+
+        if ( 0 === $length ) {
+            return;
+        }
+
+        $source_content = $post_obj->post_content;
+
+        if ( ! empty( get_the_excerpt($post_obj) ) ) {
+            $source_content = get_the_excerpt($post_obj);
+        } 
+        // Check if non-breaking space exists in the text with variations
+        if (preg_match('/\s*(&nbsp;|\xA0)\s*/u', $source_content)) {
+            // Remove non-breaking space and its variations from the text
+            $source_content = preg_replace('/\s*(&nbsp;|\xA0)\s*/u', ' ', $source_content);
+        }
+
+        $source_content = preg_replace( '`\[[^\]]*\]`', '', $source_content );
+        $trimmed_content = wp_trim_words( $source_content, $length, '&hellip;' );
+        return $trimmed_content;
+
+    }
+}
+
 /** Woocommerce releated Functions */
 if ( class_exists( 'woocommerce' ) ) {
 

@@ -172,7 +172,7 @@ class AnantProductRating extends \Elementor\Widget_Base {
 		$this->add_control(
 			'star_size',
 			[
-				'label' => __( 'Star Size', 'codesigner' ),
+				'label' => __( 'Star Size', 'anant-addons-for-elementor' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', 'em' ],
 				'default' => [
@@ -200,7 +200,7 @@ class AnantProductRating extends \Elementor\Widget_Base {
 		$this->add_control(
 			'space_between',
 			[
-				'label' => __( 'Space Between', 'codesigner' ),
+				'label' => __( 'Space Between', 'anant-addons-for-elementor' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', 'em' ],
 				'default' => [
@@ -336,9 +336,9 @@ class AnantProductRating extends \Elementor\Widget_Base {
 				<?php if($star_text !== false) { ?>
 						<div class="reveiw">
 							<?php if( $review_count !== 0){ ?>
-								<<?php echo $settings['star_text_tag'] ?> class="star-text"><?php esc_html_e($settings['star_text'])?> (<?php esc_html_e($review_count)?>)</<?php echo $settings['star_text_tag'] ?>>
+								<<?php echo esc_html( $settings['star_text_tag'] ); ?> class="star-text"><?php echo esc_html($settings['star_text'])?> (<?php echo esc_html($review_count)?>)</<?php echo esc_html( $settings['star_text_tag'] ); ?>>
 							<?php } else { ?>
-								<<?php echo $settings['star_text_tag'] ?> class="star-text">No Rating Available</<?php echo $settings['star_text_tag'] ?>>
+								<<?php echo esc_html( $settings['star_text_tag'] ) ?> class="star-text">No Rating Available</<?php echo esc_html( $settings['star_text_tag'] ) ?>>
 							<?php } ?>
 						</div>
 				<?php } ?>
@@ -386,9 +386,9 @@ class AnantProductRating extends \Elementor\Widget_Base {
 							<?php if($star_text !== false) { ?>
 									<div class="reveiw">
 										<?php if( $review_count !== 0){ ?>
-											<<?php echo $settings['star_text_tag'] ?> class="star-text">(<?php esc_html_e($review_count)?>) <?php esc_html_e($settings['star_text'])?></<?php echo $settings['star_text_tag'] ?>>
+											<<?php echo esc_html( $settings['star_text_tag'] ) ?> class="star-text">(<?php echo esc_html($review_count)?>) <?php echo esc_html($settings['star_text'])?></<?php echo esc_html( $settings['star_text_tag'] ) ?>>
 										<?php } else { ?>
-											<<?php echo $settings['star_text_tag'] ?> class="star-text">No Rating Available</<?php echo $settings['star_text_tag'] ?>>
+											<<?php echo esc_html( $settings['star_text_tag'] ) ?> class="star-text">No Rating Available</<?php echo esc_html( $settings['star_text_tag'] ) ?>>
 										<?php } ?>
 									</div>
 							<?php } ?>

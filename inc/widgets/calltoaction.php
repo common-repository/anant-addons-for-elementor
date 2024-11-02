@@ -121,9 +121,6 @@ class AnantCalltoaction extends \Elementor\Widget_Base {
 				'label_block' => true,
 			]
 		);
-	
-
-		$description = 'Aenean ut turpis blandit eros convallis congue sit amet a libero';
 
 		$this->add_control(
 			'card_description',
@@ -131,7 +128,7 @@ class AnantCalltoaction extends \Elementor\Widget_Base {
 				'label' => __( 'Description', 'anant-addons-for-elementor'),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
 				'rows' => 10,
-				'default' => __( $description, 'anant-addons-for-elementor'),
+				'default' => esc_html__( 'Aenean ut turpis blandit eros convallis congue sit amet a libero', 'anant-addons-for-elementor'),
 				'placeholder' => __( 'Type your description here', 'anant-addons-for-elementor'),
 			]
 		);
@@ -1254,8 +1251,8 @@ class AnantCalltoaction extends \Elementor\Widget_Base {
 		$link_button_icon = $settings['link_button_icon'];
 		$link_button_position = $settings['link_button_position'];
 		$link = $settings['card_link']['url'];
-		$target = $settings['card_link']['is_external'] ? ' target="_blank"' : '';
-		$nofollow = $settings['card_link']['nofollow'] ? ' rel="nofollow"' : '';
+		$target = $settings['card_link']['is_external'] ? ' target=_blank' : '';
+		$nofollow = $settings['card_link']['nofollow'] ? ' rel=nofollow' : '';
 
 		$template_style = $settings['template_style'];
 
@@ -1264,8 +1261,8 @@ class AnantCalltoaction extends \Elementor\Widget_Base {
 			$link_two_button_icon = $settings['link_two_button_icon'];
 			$link_two_button_position = $settings['link_two_button_position'];
 			$link_two = $settings['card_two_link']['url'];
-			$target_two = $settings['card_two_link']['is_external'] ? ' target="_blank"' : '';
-			$nofollow_two = $settings['card_two_link']['nofollow'] ? ' rel="nofollow"' : '';
+			$target_two = $settings['card_two_link']['is_external'] ? ' target=_blank' : '';
+			$nofollow_two = $settings['card_two_link']['nofollow'] ? ' rel=nofollow' : '';
 		}
 
 		$template_path = ANANT_PATH . 'inc/templates/cta/';

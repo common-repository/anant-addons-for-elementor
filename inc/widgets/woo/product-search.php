@@ -615,10 +615,10 @@ class AnantWooSearch extends Widget_Base {
 				'role'  => 'tablist',
 			]
 		); ?>
-		<form class="anant-search-wrapper" role="search" action="<?php echo home_url(); ?>" method="get">
+		<form class="anant-search-wrapper" role="search" action="<?php echo esc_url(home_url()); ?>" method="get">
 			<div <?php echo wp_kses_post( $this->get_render_attribute_string( 'container' ) ); ?>>
 				<?php if ( 'icon_text' === $settings['layout'] ) { ?>
-					<input <?php echo $this->get_render_attribute_string( 'input' ); ?>>
+					<input <?php echo wp_kses_post($this->get_render_attribute_string( 'input' )); ?>>
 					<button id="clear-with-button" type="reset">
 						<i class="fas fa-times" aria-hidden="true"></i>
 					</button>

@@ -18,7 +18,7 @@
 					if ( $settings['display_image']  ) {
 						$image_src = \Elementor\Group_Control_Image_Size::get_attachment_image_src( $cat_thumb_id, 'thumbnail_size', $settings );
 						if($image_src !== ''){
-							echo sprintf( '<img src="%s" title="%s" alt="%s"%s />', esc_attr( $image_src ), get_the_title( $cat_thumb_id ), anant_get_attachment_alt( $cat_thumb_id ), '' );
+							echo sprintf( '<img src="%s" title="%s" alt="%s"%s />', esc_attr( $image_src ), esc_attr(get_the_title( $cat_thumb_id )), esc_attr(anant_get_attachment_alt( $cat_thumb_id )), '' );
 						}
 					}
 					?>
@@ -40,9 +40,9 @@
 			if ($template_style != 'three') {
 				if ( $settings['display_category_count'] ) {
 					if( $category_count <= 1) {
-						echo '<span class="anant-category-count">' . $category_count . ' item</span>';
+						echo '<span class="anant-category-count">' . esc_html($category_count) . ' item</span>';
 					} else {
-						echo '<span class="anant-category-count">' . $category_count . ' items</span>';
+						echo '<span class="anant-category-count">' . esc_html($category_count) . ' items</span>';
 					} 
 				}
 			} ?>

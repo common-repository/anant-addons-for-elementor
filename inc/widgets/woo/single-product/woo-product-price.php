@@ -498,23 +498,23 @@ class AnantProductPrice extends \Elementor\Widget_Base {
 				<?php if( $product->is_on_sale() ){ ?>
 					<?php if($settings['price_swap_toggle'] === 'yes') { ?>
 						<span class="ant-price-amount amount">
-							<bdi class="ask-price"><span class="woocommerce-Price-currencySymbol"><?php esc_html_e($symbol); ?></span><?php esc_html_e($sale_price); ?></bdi>
-							<bdi class="discount-price"><span class="woocommerce-Price-currencySymbol"><?php esc_html_e($symbol); ?></span><?php esc_html_e($price); ?></bdi>
+							<bdi class="ask-price"><span class="woocommerce-Price-currencySymbol"><?php echo esc_html($symbol); ?></span><?php echo esc_html($sale_price); ?></bdi>
+							<bdi class="discount-price"><span class="woocommerce-Price-currencySymbol"><?php echo esc_html($symbol); ?></span><?php echo esc_html($price); ?></bdi>
 						</span>
 						<?php if($settings['price_percentage_toggle'] === 'yes') { ?>
-							<span class="anant-discount-tag">-<?php esc_html_e(round($discount_percentage, 2)); ?>%</span>
+							<span class="anant-discount-tag">-<?php echo esc_html(round($discount_percentage, 2)); ?>%</span>
 						<?php } ?>
 					<?php } else { ?>
 						<span class="ant-price-amount amount">
-							<bdi class="discount-price"><span class="woocommerce-Price-currencySymbol"><?php esc_html_e($symbol); ?></span><?php esc_html_e($price); ?></bdi>
-							<bdi class="ask-price"><span class="woocommerce-Price-currencySymbol"><?php esc_html_e($symbol); ?></span><?php esc_html_e($sale_price); ?></bdi>
+							<bdi class="discount-price"><span class="woocommerce-Price-currencySymbol"><?php echo esc_html($symbol); ?></span><?php echo esc_html($price); ?></bdi>
+							<bdi class="ask-price"><span class="woocommerce-Price-currencySymbol"><?php echo esc_html($symbol); ?></span><?php echo esc_html($sale_price); ?></bdi>
 						</span>
 						<?php if($settings['price_percentage_toggle'] === 'yes') { ?>
-							<span class="anant-discount-tag">-<?php esc_html_e(round($discount_percentage, 2)); ?>%</span>
+							<span class="anant-discount-tag">-<?php echo esc_html(round($discount_percentage, 2)); ?>%</span>
 						<?php } ?>
 					<?php } ?>
 				<?php } else { ?>
-					<?php echo $product->get_price_html(); ?>
+					<?php echo wp_kses_post( $product->get_price_html() ); ?>
 				<?php } ?>
 
             </div>

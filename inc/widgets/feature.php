@@ -1062,8 +1062,8 @@ class Anant_Feature extends \Elementor\Widget_Base {
 		$description = $settings['card_description'];
 		$card_icon = $settings['card_icon'];
 		$link = $settings['card_link']['url'];
-		$target = $settings['card_link']['is_external'] ? ' target="_blank"' : '';
-		$nofollow = $settings['card_link']['nofollow'] ? ' rel="nofollow"' : '';
+		$target = $settings['card_link']['is_external'] ? ' target=_blank' : '';
+		$nofollow = $settings['card_link']['nofollow'] ? ' rel=nofollow' : '';
 
 		$template_style = $settings['template_style'];
 		if ( ($template_style == 'layout_2') ) {

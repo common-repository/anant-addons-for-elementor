@@ -163,7 +163,7 @@ class AnantProductTitle extends \Elementor\Widget_Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
-					'{{WRAPPER}} .anant-product-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .anant-product-title ' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -175,7 +175,7 @@ class AnantProductTitle extends \Elementor\Widget_Base {
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
-					'{{WRAPPER}} .anant-product-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .anant-product-title .single-product-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -233,9 +233,9 @@ class AnantProductTitle extends \Elementor\Widget_Base {
 		}
 
         echo '<div class="anant-product-title">';
-		echo '<'. $settings['product_title_tag'] .' class="single-product-title">';
-			echo $product->get_title();
-		echo '</'. $settings['product_title_tag'] .'>';
+			echo '<'. esc_attr($settings['product_title_tag']) .' class="single-product-title">';
+				echo esc_html($product->get_title());
+			echo '</'. esc_attr($settings['product_title_tag']) .'>';
         echo '</div>';
 
 	}

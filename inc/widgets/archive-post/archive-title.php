@@ -414,9 +414,9 @@ class AnantArchiveTitle extends \Elementor\Widget_Base {
 			} 
 		}
 
-		echo '<'. $settings['archive_title_tag'] .' class="anant-archive-title title">';
-			echo ($title);
-		echo '</'. $settings['archive_title_tag'] .'>';
+		echo '<'. esc_attr($settings['archive_title_tag']) .' class="anant-archive-title title">';
+			echo wp_kses_post($title);
+		echo '</'. esc_attr($settings['archive_title_tag']) .'>';
 	}
 	
 }

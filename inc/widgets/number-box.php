@@ -75,18 +75,17 @@ class AnantNumberItems extends \Elementor\Widget_Base {
 			]
 		);
 
-		$description = 'Aenean ut turpis blandit eros convallis congue sit amet a libero.';
-
 		$this->add_control(
 			'card_description',
 			[
 				'label' => __( 'Description', 'anant-addons-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
 				'rows' => 10,
-				'default' => __( $description, 'anant-addons-for-elementor' ),
+				'default' => esc_html__( 'Aenean ut turpis blandit eros convallis congue sit amet a libero.', 'anant-addons-for-elementor' ),
 				'placeholder' => __( 'Type your description here', 'anant-addons-for-elementor' ),
 			]
 		);
+		
 		$this->add_control(
 			'card_link',
 			[
@@ -533,8 +532,8 @@ class AnantNumberItems extends \Elementor\Widget_Base {
 		$title = $settings['card_title'];
 		$description = $settings['card_description']; 
 		$link = $settings['card_link']['url'];
-		$target = $settings['card_link']['is_external'] ? ' target="_blank"' : '';
-		$nofollow = $settings['card_link']['nofollow'] ? ' rel="nofollow"' : ''; ?>
+		$target = $settings['card_link']['is_external'] ? ' target=_blank' : '';
+		$nofollow = $settings['card_link']['nofollow'] ? ' rel=nofollow' : ''; ?>
 
 	<div class="anant-number-wrapper number-one <?php echo esc_attr( $this->number_card_class) ?>">
 		<div class="inner <?php echo esc_attr( $this->number_inner) ?>">
@@ -551,7 +550,7 @@ class AnantNumberItems extends \Elementor\Widget_Base {
 			if ( $show_title === 'yes' ) {
 				?> 
 					<h3 class="title <?php echo esc_attr( $this->number_heading) ?>">
-						<a href="<?php echo esc_url( $link )?>" <?php echo $target ?> <?php echo $nofollow ?>> 
+						<a href="<?php echo esc_url( $link )?>" <?php echo esc_attr($target) ?> <?php echo esc_attr($nofollow) ?>> 
 							<?php echo esc_html( $title) ?>
 						</a>
 					</h3> 

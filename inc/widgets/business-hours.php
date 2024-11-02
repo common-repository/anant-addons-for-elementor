@@ -682,11 +682,11 @@ class AnantBusinessHours extends \Elementor\Widget_Base {
 				'type'        => \Elementor\Controls_Manager::SELECT,
 				'default'     => 'default',
 				'options'     => [
-					'default'      => esc_html__( 'Default' ),
-					'solid'      => esc_html__( 'Solid' ),
-					'dotted'      => esc_html__( 'Dotted' ),
-					'dashed'      => esc_html__( 'Dashed' ),
-					'none'      => esc_html__( 'None' ),
+					'default'   => esc_html__( 'Default', 'anant-addons-for-elementor' ),
+					'solid'     => esc_html__( 'Solid', 'anant-addons-for-elementor' ),
+					'dotted'    => esc_html__( 'Dotted', 'anant-addons-for-elementor' ),
+					'dashed'    => esc_html__( 'Dashed', 'anant-addons-for-elementor' ),
+					'none'      => esc_html__( 'None', 'anant-addons-for-elementor' ),
 				],
 				'selectors' => [
 					'{{WRAPPER}} .'.$this->business_hours_feature_separator_class => 'border-style:{{VALUE}};',

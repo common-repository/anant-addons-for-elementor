@@ -481,8 +481,8 @@ class Anant_CreativeButton extends \Elementor\Widget_Base {
 		$link_button_icon = $settings['link_button_icon'];
 		$link_button_position = $settings['link_button_position'];
 		$link = $settings['card_link']['url'];
-		$target = $settings['card_link']['is_external'] ? ' target="_blank"' : '';
-		$nofollow = $settings['card_link']['nofollow'] ? ' rel="nofollow"' : '';
+		$target = $settings['card_link']['is_external'] ? ' target=_blank' : '';
+		$nofollow = $settings['card_link']['nofollow'] ? ' rel=nofollow' : '';
 
 		$template_style = $settings['template_style'];
 		if (in_array($template_style, ['one', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'])) {

@@ -671,15 +671,15 @@ class Anant_Dualbutton extends \Elementor\Widget_Base {
 		$link_button_icon = $settings['link_button_icon'];
 		$link_button_position = $settings['link_button_position'];
 		$link = $settings['card_link']['url'];
-		$target = $settings['card_link']['is_external'] ? ' target="_blank"' : '';
-		$nofollow = $settings['card_link']['nofollow'] ? ' rel="nofollow"' : '';
+		$target = $settings['card_link']['is_external'] ? ' target=_blank' : '';
+		$nofollow = $settings['card_link']['nofollow'] ? ' rel=nofollow' : '';
 
 		$link_two_text = $settings['card_two_link_text']; 
 		$link_two_button_icon = $settings['link_two_button_icon'];
 		$link_two_button_position = $settings['link_two_button_position'];
 		$link_two = $settings['card_two_link']['url'];
-		$target_two = $settings['card_two_link']['is_external'] ? ' target="_blank"' : '';
-		$nofollow_two = $settings['card_two_link']['nofollow'] ? ' rel="nofollow"' : '';
+		$target_two = $settings['card_two_link']['is_external'] ? ' target=_blank' : '';
+		$nofollow_two = $settings['card_two_link']['nofollow'] ? ' rel=nofollow' : '';
 
 		$template_style = $settings['template_style'];
 

@@ -15,9 +15,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 								<?php if (isset($social_icons_block) && !empty($social_icons_block)) {
 										foreach ($social_icons_block as $key => $icon_block){
 											if ($key === 4 ) { break; }
-											$target = $icon_block['social_icon_link']['is_external'] ? ' target="_blank"' : '';
-											$nofollow = $icon_block['social_icon_link']['nofollow'] ? ' rel="nofollow"' : ''; ?>
-											<a href="<?php echo esc_url($icon_block['social_icon_link']['url']) ?>" <?php echo esc_attr($target);; ?> <?php echo esc_attr($nofollow);; ?>>
+											$target = $icon_block['social_icon_link']['is_external'] ? ' target=_blank' : '';
+											$nofollow = $icon_block['social_icon_link']['nofollow'] ? ' rel=nofollow' : ''; ?>
+											<a href="<?php echo esc_url($icon_block['social_icon_link']['url']) ?>" <?php echo esc_attr($target); ?> <?php echo esc_attr($nofollow); ?>>
 												<?php \Elementor\Icons_Manager::render_icon($icon_block['social_icon'], ['aria-hidden' => 'true']); ?>
 											</a>
 										<?php

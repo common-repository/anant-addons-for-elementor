@@ -668,14 +668,13 @@ class AnantMarqueeStipe extends \Elementor\Widget_Base {
             <div class="overlay">
                 <!-- marquee-slide -->
                 <div class="anant-marquee-main" tickerHover = "<?php echo esc_attr($pause_hover) ?>">
-
                     <?php if($marquee_type === 'repeater') {
                         if ( $marquee_stripe_repeater ) { ?>
                             <?php foreach (  $marquee_stripe_repeater as $item ) {
                                 $title = $item['marquee_stripe_item_title']; ?>
                                 <!-- item -->
                                     <div class="anant-marquee-item" >
-                                        <<?php echo $title_tag ?> class="title" data-title="<?php echo esc_attr($title); ?>"></<?php echo $title_tag ?>>
+                                        <<?php echo esc_attr($title_tag) ?> class="title" data-title="<?php echo esc_attr($title); ?>"></<?php echo esc_attr($title_tag) ?>>
                                     </div>
                                 <!-- /item -->
 

@@ -1078,8 +1078,8 @@ class Anant_Author extends \Elementor\Widget_Base {
 		$description = $settings['card_description'];
 		$label = $settings['card_label'];
 		$card_link = $settings['card_link']['url'];
-		$target = $settings['card_link']['is_external'] ? ' target="_blank"' : '';
-		$nofollow = $settings['card_link']['nofollow'] ? ' rel="nofollow"' : '';
+		$target = $settings['card_link']['is_external'] ? ' target=_blank' : '';
+		$nofollow = $settings['card_link']['nofollow'] ? ' rel=nofollow' : '';
 		$image_url = $settings['card_image']['url']; 
 
 		$template_style = $settings['template_style'];
@@ -1101,8 +1101,9 @@ class Anant_Author extends \Elementor\Widget_Base {
 				<div class="anant-content <?php echo esc_attr($this->author_card_inner_class) ?>">
 					<div class="anant-author-title">
 						<?php if ( $show_title === 'yes' ) { ?>
-								<h2 class="title <?php echo esc_attr($this->author_card_heading_class) ?>">
-								<a href="<?php echo esc_url($card_link) ?>"><?php echo esc_html($title) ?></a></h2>
+							<h2 class="title <?php echo esc_attr($this->author_card_heading_class) ?>">
+								<a href="<?php echo esc_url($card_link) ?>" <?php echo esc_attr($target); ?> <?php echo esc_attr($nofollow); ?>><?php echo esc_html($title) ?></a>
+							</h2>
 						<?php } ?>
 						<?php if ( $show_description === 'yes' ) { ?>
 								<span class="description <?php echo esc_attr($this->author_card_description_class) ?>"><?php echo esc_html($description) ?></span>
@@ -1112,8 +1113,8 @@ class Anant_Author extends \Elementor\Widget_Base {
 						<div class="anant-social-icons <?php echo esc_attr($this->author_social_icon_class) ?>">
 							<?php foreach ($socials as $key => $socials) { 
 								$author_social_link = $socials['author_social_link']['url'];
-								$target = $socials['author_social_link']['is_external'] ? ' target="_blank"' : '';
-								$nofollow = $socials['author_social_link']['nofollow'] ? ' rel="nofollow"' : '';
+								$target = $socials['author_social_link']['is_external'] ? ' target=_blank' : '';
+								$nofollow = $socials['author_social_link']['nofollow'] ? ' rel=nofollow' : '';
 								if ($key === 4 ) { break; }?>
 								<a href="<?php echo esc_url( $author_social_link ); ?>" <?php echo esc_attr($target); ?> <?php echo esc_attr($nofollow); ?>> 
 									<?php \Elementor\Icons_Manager::render_icon( $socials['author_social_icon'], [ 'aria-hidden' => 'true' ] ); ?>                            

@@ -258,6 +258,9 @@
 }
 /*----- ant-blog-category -----*/
 .ant-blog-category {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
     margin-bottom: 10px;
 }
 .ant-blog-category a { 
@@ -274,6 +277,7 @@
 .ant-blog-category.one a {  
     font-size: 13px; 
     padding-left: 10px;
+    /* margin: 0; */
     border-width: 0 0 0 4px;
     border-style: solid;
     display: inline-block;
@@ -844,9 +848,6 @@
 }
 .navigation.anant-pagi-p-n .anant-pagi-pre-btn {
 	margin-right: 0.5rem;
-}
-.anant-single-item {
-	margin-bottom: 0;
 }
 .anant-swiper-slide-blog .ant-blog-post {
 	width: 100%;

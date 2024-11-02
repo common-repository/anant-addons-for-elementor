@@ -1,5 +1,4 @@
-<?php
-namespace AnantAddons;
+<?php namespace AnantAddons;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Background;
@@ -181,21 +180,21 @@ class AnantProductDescription extends \Elementor\Widget_Base {
 		}
 
         echo '<div class="anant-product-description">';
-		echo '<'. $settings['product_description_tag'] .' class="single-product-description">';
-		if($desc_type === 'full'){
-			if($product->get_description() !== ''){
-				echo $product->get_description();
-			}else{
-				echo "Description is empty";
-			}
-		}else{
-			if($product->get_short_description() !== ''){
-				echo $product->get_short_description();
-			}else{
-				echo "Short description has not been defined.";
-			}
-		}
-		echo '</'. $settings['product_description_tag'] .'>';
+			echo '<'. esc_attr($settings['product_description_tag']) .' class="single-product-description">';
+				if($desc_type === 'full'){
+					if($product->get_description() !== ''){
+						echo wp_kses_post($product->get_description());
+					}else{
+						echo "Description is empty";
+					}
+				}else{
+					if($product->get_short_description() !== ''){
+						echo wp_kses_post($product->get_short_description());
+					}else{
+						echo "Short description has not been defined.";
+					}
+				}
+			echo '</'. esc_attr($settings['product_description_tag']) .'>';
         echo '</div>';
 
 	}

@@ -654,19 +654,19 @@ class AnantProductImage extends \Elementor\Widget_Base {
 		$switch_speed = $settings['transition_between_slides']; 
 		$loop = $settings['loop']; 
 		$i = 0;  ?>
-	<div class="anant-product-image " zoom-type="inner" slide-align="<?php esc_attr_e($slides_align); ?>" auto="<?php esc_attr_e($auto); ?>" speed="<?php esc_attr_e($speed); ?>" switch-speed="<?php esc_attr_e($switch_speed); ?>" swipe-loop="<?php esc_attr_e($loop); ?>" >
-      <div class="ant-single-imageBox anant_slider_wrapper inner <?php esc_attr_e($slides_align); ?>">
+	<div class="anant-product-image " zoom-type="inner" slide-align="<?php echo esc_attr($slides_align); ?>" auto="<?php echo esc_attr($auto); ?>" speed="<?php echo esc_attr($speed); ?>" switch-speed="<?php echo esc_attr($switch_speed); ?>" swipe-loop="<?php echo esc_attr($loop); ?>" >
+      <div class="ant-single-imageBox anant_slider_wrapper inner <?php echo esc_attr($slides_align); ?>">
 
 	  <?php if($slides_align === 'horizontal_slide') { ?>
 		<div class="swiper-container swiper anant-product-image-main-img">
             <div class="swiper-wrapper">
                 <div class="swiper-slide ant-big-single-img" imageScale="1.5">
-                  	<div class="ant-single-main-img" style="background-image: url('<?php esc_attr_e($image_url); ?>');"></div>
+                  	<div class="ant-single-main-img" style="background-image: url('<?php echo esc_attr($image_url); ?>');"></div>
                 </div>  
 			<?php if(!empty($gallary_images_ids)) { ?>
 				<?php foreach($gallary_images_ids as $img_id) { $img_url = wp_get_attachment_image_url($img_id, 'full'); ?>
 				    <div class="swiper-slide ant-big-single-img" imageScale="1.5">
-                  		<div class="ant-single-main-img" style="background-image: url('<?php esc_attr_e($img_url); ?>');"></div>
+                  		<div class="ant-single-main-img" style="background-image: url('<?php echo esc_attr($img_url); ?>');"></div>
                 	</div>    
 				<?php } ?>
 			<?php } ?>
@@ -685,13 +685,13 @@ class AnantProductImage extends \Elementor\Widget_Base {
             <div class="swiper-wrapper">
 			<?php if($i === 0) { ?>
                 <div class="swiper-slide ant-small-single-img">
-                  <div class="ant-single-gallery-img" style="background-image: url('<?php esc_attr_e($image_url); ?>');"></div>
+                  <div class="ant-single-gallery-img" style="background-image: url('<?php echo esc_attr($image_url); ?>');"></div>
                 </div>  
 			<?php } ?>
 			<?php if(!empty($gallary_images_ids)) { ?>
 				<?php foreach($gallary_images_ids as $img_id) { $img_url = wp_get_attachment_image_url($img_id, 'full'); ?>
                 <div class="swiper-slide ant-small-single-img">
-                  <div class="ant-single-gallery-img" style="background-image: url('<?php esc_attr_e($img_url); ?>');"></div>
+                  <div class="ant-single-gallery-img" style="background-image: url('<?php echo esc_attr($img_url); ?>');"></div>
                 </div>  
 				<?php } ?>
 			<?php } ?>

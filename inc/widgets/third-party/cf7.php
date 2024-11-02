@@ -567,8 +567,4 @@ class AnantContactForm7 extends Widget_Base {
 	public function render() {
 		echo do_shortcode( $this->get_shortcode() );
 	}
-
-	public function render_plain_content() {
-		echo $this->get_shortcode();
-	}
 }

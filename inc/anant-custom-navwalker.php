@@ -202,7 +202,24 @@ class anant_nav_walker extends \Walker_Nav_Menu {
 				$fb_output .= '</' . $container . '>';
 			}
 
-			echo $fb_output;
+			$allowed_html = array(
+				'ul'    => array(
+					'role'    => array(),
+					'class' => array(),
+					'id'    => array(),
+				),
+				'li'   => array(
+					'class' => array(),
+				),
+				'p'      => array(),
+				'a'      => array(
+					'href'  => array(),
+					'class' => array(),
+					'title' => array(),
+				),
+				// Add other tags and attributes as necessary.
+			);
+			echo wp_kses( $fb_output, $allowed_html );
 		}
 	}
 }

@@ -1,6 +1,6 @@
 <div class="ant-price one<?php if ($primary_box == 'show'){echo ' active';} ?> <?php echo esc_attr($this->price_card_class )?>">
 	<?php if ($show_ribbon == 'yes') { ?>
-	<div class="ant-price-ribbon <?php echo $ribbon_style ?>">
+	<div class="ant-price-ribbon <?php echo esc_attr($ribbon_style) ?>">
 		<span class="<?php echo esc_attr($this->price_card_ribbon_class )?>"><?php echo esc_html($ribbon_title )?></span>
 	</div><?php } ?>
 	<div class="ant-price-header">
@@ -68,8 +68,8 @@
 			<a
 				class="ant-price-btn <?php echo $link_button_position === 'before' ? 'anant-no-flex': '' ?>"
 				href="<?php echo esc_url($link) ?>"
-				<?php echo $target ?>
-				<?php echo $nofollow ?>>
+				<?php echo esc_attr($target) ?>
+				<?php echo esc_attr($nofollow) ?>>
 				<?php 
 					if ($link_button_position === 'before') {
 						\Elementor\Icons_Manager::render_icon( $link_button_icon, [ 'aria-hidden' => 'true' ] );

@@ -33,8 +33,8 @@ class Anant_Header_Footer_Elementor {
 
     function anant_post_type(){
         $labels = array(
-            'name'                       => esc_html__('Anant Theme Builder', 'Post Type General Name', 'anant-addons-for-elementor'),
-            'singular_name'              => esc_html__('item', 'Post Type Singular Name', 'anant-addons-for-elementor'),
+            'name'                       => esc_html__('Anant Theme Builder',  'anant-addons-for-elementor'),
+            'singular_name'              => esc_html__('item', 'anant-addons-for-elementor'),
             'menu_name'                  => esc_html__('Anant Theme Builder', 'anant-addons-for-elementor'),
             'name_admin_bar'             => esc_html__('Anant Theme Builder item', 'anant-addons-for-elementor'),
             'parent_item_colon'          => esc_html__( 'Parent Item', 'anant-addons-for-elementor' ),
@@ -138,7 +138,7 @@ class Anant_Header_Footer_Elementor {
         <div class = "main_cls">
             <div class="template-type-main">
                 <div class="temp-label">
-                <label><strong><?php esc_html_e( 'Type of Template', 'anant-header-footer' ) ?></strong></label>
+                <label><strong><?php esc_html_e( 'Type of Template', 'anant-addons-for-elementor' ) ?></strong></label>
                 </div>
                     <div class="template-type">
                     <select name="type_of_template" class="form-control selectpicker">
@@ -156,7 +156,6 @@ class Anant_Header_Footer_Elementor {
                 </div>
                     <div class="custome-dropdown-wrapper">
                         <select name="_display_on_template[]" data-placeholder="multiple-select" class="custome-dropdown opt-display-on" multiple="multiple"  >
-                                <option style = "display:none;" value=""<?php selected( in_array( '', $current_template, true ) ); ?>><?php esc_html_e( ' ', 'anant-addons-for-elementor' ) ?></option>
                                 <option value="all"       <?php selected( in_array( 'all', $current_template, true ) ); ?>><?php esc_html_e( 'Entire Site', 'anant-addons-for-elementor' ) ?></option>
                                 <option value="home"      <?php selected( in_array( 'home', $current_template, true ) ); ?>><?php esc_html_e( 'Home Page', 'anant-addons-for-elementor' ) ?></option>
                                 <option value="singlePost"   <?php selected( in_array( 'singlePost', $current_template, true ) ); ?>><?php esc_html_e( 'Single post Page', 'anant-addons-for-elementor' ) ?></option>
@@ -170,16 +169,16 @@ class Anant_Header_Footer_Elementor {
                                     <option value="wooArchive" <?php selected( in_array( 'wooArchive', $current_template, true ) ); ?>><?php esc_html_e( 'Product Archive Page', 'anant-addons-for-elementor' ) ?></option><?php     
                                 } ?>
                                 <?php foreach($options as $option){ ?>
-                                <option value="<?php esc_attr_e( $option ); ?>" <?php selected( in_array( $option, $current_template, true ) ); ?> style = " text-transform: capitalize;">
-                                <?php esc_html_e( $option ); ?></option>
+                                <option value="<?php echo esc_attr( $option ); ?>" <?php selected( in_array( $option, $current_template, true ) ); ?> style = " text-transform: capitalize;">
+                                <?php echo esc_html( $option ); ?></option>
                             <?php } ?>
                         </select>
                     </div>
         
             </div>
             <div class="posttype_val">
-                <input type="hidden" name="post_type_posts" value="<?php esc_attr_e( $post_id ); ?>">
-                <input type="hidden" name="post_type_template" value="<?php esc_attr_e( $post_type ); ?>" class="post-type-template">
+                <input type="hidden" name="post_type_posts" value="<?php echo esc_attr( $post_id ); ?>">
+                <input type="hidden" name="post_type_template" value="<?php echo esc_attr( $post_type ); ?>" class="post-type-template">
             </div>					
             <div class="display-on-post"></div>
         </div>
@@ -208,8 +207,8 @@ class Anant_Header_Footer_Elementor {
         }
         
         function anant_main_plug_styles() {
-            wp_enqueue_style( 'style',  ANANT_URL . "assets/css/meta-box.css");
-            wp_enqueue_style( 'select2-min-css', ANANT_URL . "assets/css/select2.min.css");
+            wp_enqueue_style( 'style',  ANANT_URL . "assets/css/meta-box.css", array(), ANANT_VERSION);
+            wp_enqueue_style( 'select2-min-css', ANANT_URL . "assets/css/select2.min.css", array(), ANANT_VERSION);
         }
             
         function anant_main_plug_enqueue_script() {   
@@ -240,6 +239,7 @@ class Anant_Header_Footer_Elementor {
 
                         if ( '' === $full_page_template ) { return $template; }
 
+                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                         echo ''. $full_page_template; ?>
                     </div>     
                 <?php get_footer(); 
@@ -781,7 +781,7 @@ class Anant_Header_Footer_Elementor {
             if ( 'all' !== $post_type && 'blogArchive' !== $post_type && 'search' !== $post_type && 'home' !== $post_type && 'not_found' !== $post_type ) : ?>
         
             <input type="hidden" name="post_type_posts" value="all">
-            <input type="hidden" name="post_type_template" value="<?php esc_attr_e( $post_type ); ?>" class="post-type-template">
+            <input type="hidden" name="post_type_template" value="<?php echo esc_attr( $post_type ); ?>" class="post-type-template">
         
             <?php endif; die();
         }          

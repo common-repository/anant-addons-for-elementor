@@ -1240,7 +1240,7 @@ class AnantPostBlogTimeline extends \Elementor\Widget_Base {
 						];
 						if ($template_style == 'layout_1') { ?>
 							<!-- blog card post -->
-								<div class="ant-blog-timeline-item ant-timeline-item" id="<?php echo get_the_ID(); ?>">
+								<div class="ant-blog-timeline-item ant-timeline-item" id="<?php echo esc_attr(get_the_ID()); ?>">
 									<div class="timeline-dot <?php echo esc_attr($this->blog_dot );?>"></div>
 										<div class="ant-blog-meta timeline-date <?php echo esc_attr($this->blog_meta) ;?>">
 											<?php
@@ -1266,7 +1266,7 @@ class AnantPostBlogTimeline extends \Elementor\Widget_Base {
 															$text = 'Comments';
 														}
 													?>
-														<span class="ant-comments-link"> <a href="<?php comments_link(); ?>"><i class="far fa-comments"></i><?php echo get_comments_number(). ' ' ?></a> </span>
+														<span class="ant-comments-link"> <a href="<?php comments_link(); ?>"><i class="far fa-comments"></i><?php echo esc_html(get_comments_number(). ' ') ?></a> </span>
 													<?php
 												}
 											?>
@@ -1286,7 +1286,7 @@ class AnantPostBlogTimeline extends \Elementor\Widget_Base {
 											} else {
 												$bg = "background-image: url(". esc_url($image_src) .");";
 												?>
-													<div class="ant-img-post ant-back-img hlgr <?php echo $this->blog_img ;?>" style=" <?php echo $bg ?> ">
+													<div class="ant-img-post ant-back-img hlgr <?php echo esc_attr($this->blog_img); ?>" style=" <?php echo esc_attr($bg) ?> ">
 												<?php
 											}
 										?> 
@@ -1302,7 +1302,7 @@ class AnantPostBlogTimeline extends \Elementor\Widget_Base {
 														foreach($params['categories'] as $category ) {
 															$category = (array) $category;
 															?>
-																<a href="<?php echo get_category_link( $category['term_id'] ) ?>"><?php echo esc_html($category['name']) ?></a>
+																<a href="<?php echo esc_url(get_category_link( $category['term_id'] )) ?>"><?php echo esc_html($category['name']) ?></a>
 															<?php
 														}
 													}
@@ -1312,13 +1312,13 @@ class AnantPostBlogTimeline extends \Elementor\Widget_Base {
 												if ( $show_title === 'yes' ) {
 													// title_html_tag
 
-													echo '<'.$title_html_tag.' class="title '.$this->blog_title.'">';
+													echo '<'.esc_attr($title_html_tag).' class="title '.esc_attr($this->blog_title).'">';
 													if ( $params['title_length'] > 0 ) {
 														?>
-															<a href="<?php echo esc_url(get_permalink()); ?>" title="<?php the_title_attribute(); ?>"><?php echo wp_trim_words(get_the_title(), $params['title_length'], '' ); ?></a>
+															<a href="<?php echo esc_url(get_permalink()); ?>" title="<?php the_title_attribute(); ?>"><?php echo esc_html(wp_trim_words(get_the_title(), $params['title_length'], '' )); ?></a>
 														<?php
 													}
-													echo '</'.$title_html_tag.'>';
+													echo '</'.esc_attr($title_html_tag).'>';
 												}
 											?>
 											<?php
@@ -1326,7 +1326,7 @@ class AnantPostBlogTimeline extends \Elementor\Widget_Base {
 													?>
 														<div class="description <?php echo esc_attr($this->blog_desc);?>">
 													<?php
-													echo wp_trim_words( get_the_content(), $params['excerpt_length'], '' );
+													echo wp_kses_post(anant_get_excerpt( $params['excerpt_length'], get_post() ));
 													?>
 														</div>
 													<?php

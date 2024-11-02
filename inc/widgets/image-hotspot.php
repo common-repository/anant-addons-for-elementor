@@ -720,12 +720,12 @@ class AnantImageHotspot extends \Elementor\Widget_Base {
 					foreach ($hotspot_items as $key => $item)
 					{
 						if ($key === 3 ) { break; }
-						$target = $item['hotspot_item_link']['is_external'] ? ' target="_blank"' : '';
-						$nofollow = $item['hotspot_item_link']['nofollow'] ? ' rel="nofollow"' : ''; 
+						$target = $item['hotspot_item_link']['is_external'] ? ' target=_blank' : '';
+						$nofollow = $item['hotspot_item_link']['nofollow'] ? ' rel=nofollow' : ''; 
 						?>
-						<div class="ant-hotspot-item elementor-repeater-item-<?php echo( $item['_id'] ) ?> <?php echo esc_attr($this->anant_hotspot_item) ?>">
+						<div class="ant-hotspot-item elementor-repeater-item-<?php echo esc_attr( $item['_id'] ) ?> <?php echo esc_attr($this->anant_hotspot_item) ?>">
 							<div class="ant-hotspot-content <?php echo esc_attr($this->anant_hotspot_content) ?>">
-								<a target="_blank" href="<?php echo esc_url($item['hotspot_item_link']['url']) ?>"<?php echo $target . $nofollow; ?>>
+								<a href="<?php echo esc_url($item['hotspot_item_link']['url']) ?>"<?php echo esc_attr($target) . esc_attr($nofollow); ?>>
 									<?php \Elementor\Icons_Manager::render_icon($item['hotspot_item_icon'], ['aria-hidden' => 'true']); ?>
 								</a>
 							</div>

@@ -283,7 +283,7 @@ class AnantArchivePostList extends \Elementor\Widget_Base {
 		$this->add_control(
 			'search_query_list',
 			[
-				'label' => esc_html__( 'Include Post Type in Search Result', 'textdomain' ),
+				'label' => esc_html__( 'Include Post Type in Search Result', 'anant-addons-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::SELECT2,
 				'label_block' => true,
 				'multiple' => true,
@@ -407,17 +407,15 @@ class AnantArchivePostList extends \Elementor\Widget_Base {
 			]
 		);
 
-		anant_switcher_control(
-			$this,
+		$this->add_control(
+			'anant_archive_post_list_pro_notice',
 			[
-				'key'       => 'show_all_number',
-				'label'     => 'Show All Number',
-				'on_label'  => 'Yes',
-				'off_label' => 'No',
-				'default' => 'yes',
-				'condition'   => [
-					'pagination_type' => ['numbers','numbers+previous/next']
-				],
+				'raw' => 'Only Available in <a href="https://anantaddons.com/" target="_blank">Pro Version!</a>',
+				'type' => \Elementor\Controls_Manager::RAW_HTML,
+				'content_classes' => 'anant-pro-notice',
+				'condition' => [ 
+                    'pagination_type!' => ['previous/next', 'none'],
+                ],
 			]
 		);
 
@@ -2423,7 +2421,6 @@ class AnantArchivePostList extends \Elementor\Widget_Base {
 
 		$excerpt_length = $settings['excerpt_length']; 
 		$title_length = $settings['title_length']; 
-		$show_all_number = $settings['show_all_number'] == 'yes' ? true : false; 
 		$paged = get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : 1; 
 
 		$CURRENT_URL = $_SERVER['REQUEST_URI'];
@@ -2628,7 +2625,7 @@ class AnantArchivePostList extends \Elementor\Widget_Base {
 						];
 						if ($template_style == 'layout_1') { ?>
 						<!-- blog list post -->
-						<div class="ant-small-post one <?php echo esc_attr($this->blog_list_class );?>" id="<?php echo get_the_ID(); ?>">
+						<div class="ant-small-post one <?php echo esc_attr($this->blog_list_class );?>" id="<?php echo esc_attr(get_the_ID()); ?>">
 							<?php 
 								$image_src = '';
 								if ($thumbnail_id) {
@@ -2642,7 +2639,7 @@ class AnantArchivePostList extends \Elementor\Widget_Base {
 								} else {
 									$bg = "background-image: url(". esc_url($image_src) .");";
 									?>
-										<div class="ant-img-small-post ant-back-img hlgr <?php echo esc_attr($this->blog_img) ;?>" style=" <?php echo $bg ?> ">
+										<div class="ant-img-small-post ant-back-img hlgr <?php echo esc_attr($this->blog_img) ;?>" style=" <?php echo esc_attr($bg); ?> ">
 									<?php
 								}
 							?> 
@@ -2650,7 +2647,7 @@ class AnantArchivePostList extends \Elementor\Widget_Base {
 								if( $show_date === 'yes' ) {
 									?>
 										<span class="ant-blog-date <?php echo esc_attr($this->blog_date );?>">
-											<a href="<?php echo get_day_link(get_post_time(''), get_post_time('m'), get_post_time('j'));  ?>" class="entry-date">
+											<a href="<?php echo esc_url(get_day_link(get_post_time(''), get_post_time('m'), get_post_time('j')));  ?>" class="entry-date">
 												<?php
 													the_time('j');
 													echo '<span>'; the_time('F');echo'</span>'; 
@@ -2672,7 +2669,7 @@ class AnantArchivePostList extends \Elementor\Widget_Base {
 										foreach($params['categories'] as $category ) {
 											$category = (array) $category;
 											?>
-												<a href="<?php echo  get_category_link( $category['term_id'] ) ?>"><?php echo esc_html($category['name']) ?></a>
+												<a href="<?php echo esc_url(get_category_link( $category['term_id'] )) ?>"><?php echo esc_html($category['name']) ?></a>
 											<?php
 										}
 									}
@@ -2683,13 +2680,13 @@ class AnantArchivePostList extends \Elementor\Widget_Base {
 									if ( $show_title === 'yes' ) {
 										// title_html_tag
 					
-										echo '<'.$title_html_tag.' class="title '.$this->blog_title.'">';
+										echo '<'.esc_attr($title_html_tag).' class="title '.esc_attr($this->blog_title).'">';
 										if ( $params['title_length'] > 0 ) {
 											?>
-												<a href="<?php echo esc_url(get_permalink()); ?>" title="<?php the_title_attribute(); ?>"><?php echo wp_trim_words(get_the_title(), 10, '' ); ?></a>
+												<a href="<?php echo esc_url(get_permalink()); ?>" title="<?php the_title_attribute(); ?>"><?php echo esc_html(wp_trim_words(get_the_title(), 10, '' )); ?></a>
 											<?php
 										}
-										echo '</'.$title_html_tag.'>';
+										echo '</'.esc_attr($title_html_tag).'>';
 									}
 								?>
 					
@@ -2698,7 +2695,7 @@ class AnantArchivePostList extends \Elementor\Widget_Base {
 										if( $show_author === 'yes' ) {
 											?>
 												<span class="ant-author">
-													<a href="<?php echo get_author_posts_url(get_the_author_meta( 'ID' )); ?>"><?php echo get_avatar(get_the_author_meta( 'ID') , 150); ?><?php the_author(); ?></a>
+													<a href="<?php echo esc_url(get_author_posts_url(get_the_author_meta( 'ID' ))); ?>"><?php echo get_avatar(get_the_author_meta( 'ID') , 150); ?><?php the_author(); ?></a>
 												</span>
 											<?php
 										}
@@ -2710,7 +2707,7 @@ class AnantArchivePostList extends \Elementor\Widget_Base {
 													$text = 'Comments';
 												}
 											?>
-												<span class="ant-comments-link"> <a href="<?php comments_link(); ?>"><i class="far fa-comments"></i><?php echo get_comments_number(). ' ' ?></a> </span>
+												<span class="ant-comments-link"> <a href="<?php comments_link(); ?>"><i class="far fa-comments"></i><?php echo esc_html(get_comments_number(). ' ') ?></a> </span>
 											<?php
 										}
 									?>
@@ -2721,7 +2718,7 @@ class AnantArchivePostList extends \Elementor\Widget_Base {
 										?>
 											<div class="discription <?php echo esc_attr($this->blog_desc );?>">
 										<?php
-										echo wp_trim_words( get_the_content(), $params['excerpt_length'], '' );
+										echo wp_kses_post(anant_get_excerpt( $params['excerpt_length'], get_post() ));
 										?>
 											</div>
 										<?php
@@ -2737,10 +2734,10 @@ class AnantArchivePostList extends \Elementor\Widget_Base {
 					elseif(is_search()) : ?> 
 						<div class="anant-search-nothing-found">
 							<h2>
-								<?php esc_html_e( $settings['nothing_found_title'], 'anant-addons-for-elementor' ); ?>
+								<?php echo esc_html( $settings['nothing_found_title'] ); ?>
 							</h2>
 							<p>
-								<?php esc_html_e( $settings['nothing_found_desc'] , 'anant-addons-for-elementor' ); ?>
+								<?php echo esc_html( $settings['nothing_found_desc'] ); ?>
 							</p>
 						</div>
 					<?php
@@ -2787,13 +2784,13 @@ class AnantArchivePostList extends \Elementor\Widget_Base {
 		// Previous link
 		$prev_link = $this->custom_previous_posts_page_link( $paged );
 		if ( $prev_link ) {
-			echo "<li><a href='". $prev_link ."' class='page-numbers anant-pagi-pre-btn'>Previous</a></li>";
+			echo "<li><a href='". esc_url($prev_link) ."' class='page-numbers anant-pagi-pre-btn'>Previous</a></li>";
 		}
 	
 		// Next link
 		$next_link = $this->custom_next_posts_page_link( $paged, $max );
 		if ( $next_link ) {
-			echo "<li><a href='". $next_link ."' class='page-numbers'>Next</a></li>";
+			echo "<li><a href='". esc_url($next_link) ."' class='page-numbers'>Next</a></li>";
 		}
 	
 		echo '</ul></div>' . "\n";

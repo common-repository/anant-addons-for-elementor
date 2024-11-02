@@ -133,14 +133,14 @@ class AnantContentTimeline extends \Elementor\Widget_Base {
 			]
 		);
 
-		$description = 'Aenean ut turpis blandit eros convallis congue sit amet a libero.';
+		$description = __( 'Aenean ut turpis blandit eros convallis congue sit amet a libero.', 'anant-addons-for-elementor' );
 
 		$repeater->add_control(
 			'card_description',
 			[
 				'label' => __( 'Description', 'anant-addons-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,  
-				'default' => __( $description, 'anant-addons-for-elementor' ),
+				'default' => esc_html( $description ),
 				'label_block' => true,
 			]
 		);
@@ -170,25 +170,25 @@ class AnantContentTimeline extends \Elementor\Widget_Base {
 					'card_date' => __('01 jan 2000', 'anant-addons-for-elementor') ,
 					'card_title' => __('Timeline item ','anant-addons-for-elementor') ,
 					'card_subtitle' => __('Item-1','anant-addons-for-elementor') ,
-					'card_description' => __( $description,'anant-addons-for-elementor') , 
+					'card_description' => esc_html( $description ), 
 				],
 				[
 					'card_date' => __('01 jan 2005', 'anant-addons-for-elementor') ,
 					'card_title' => __('Timeline item ','anant-addons-for-elementor') ,
 					'card_subtitle' => __('Item-2', 'anant-addons-for-elementor') ,
-					'card_description' => __( $description,'anant-addons-for-elementor') , 
+					'card_description' => esc_html( $description ), 
 				],
 				[
 					'card_date' => __('01 jan 2010', 'anant-addons-for-elementor') ,
 					'card_title' => __('Timeline item ','anant-addons-for-elementor') ,
 					'card_subtitle' => __('Item-3', 'anant-addons-for-elementor') ,
-					'card_description' => __( $description,'anant-addons-for-elementor') , 
+					'card_description' => esc_html( $description ), 
 				],
 				[
 					'card_date' => __('01 jan 2020', 'anant-addons-for-elementor') ,
 					'card_title' => __('Timeline item ','anant-addons-for-elementor') ,
 					'card_subtitle' => __('Item-4', 'anant-addons-for-elementor') ,
-					'card_description' => __( $description,'anant-addons-for-elementor') , 
+					'card_description' => esc_html( $description ), 
 				],
 			], 
 			'title_field' => '{{{ card_title }}}', 
@@ -913,8 +913,8 @@ class AnantContentTimeline extends \Elementor\Widget_Base {
 						$subtitle_block = $content_block['card_subtitle'];
 						$desc_block = $content_block['card_description'];
 						$link_block = $content_block['card_link']['url']; 
-						$target = $content_block['card_link']['is_external'] ? ' target="_blank"' : '';
-						$nofollow = $content_block['card_link']['nofollow'] ? ' rel="nofollow"' : '';
+						$target = $content_block['card_link']['is_external'] ? ' target=_blank' : '';
+						$nofollow = $content_block['card_link']['nofollow'] ? ' rel=nofollow' : '';
 						?>
 						<div class="ant-timeline-item">
 							<div class="timeline-dot <?php echo esc_attr($this->timeline_dot )?>"></div>
@@ -942,7 +942,7 @@ class AnantContentTimeline extends \Elementor\Widget_Base {
 								?>
 									<div class="heading">
 										<h3 class="title <?php echo esc_attr($this->timeline_card_heading_class )?>">
-										<a href="<?php echo esc_url($link_block) ?>" <?php echo $target ?> <?php echo $nofollow ?>><?php echo esc_html($title_block) ?></a></h3>
+										<a href="<?php echo esc_url($link_block) ?>" <?php echo esc_attr($target) ?> <?php echo esc_attr($nofollow) ?>><?php echo esc_html($title_block) ?></a></h3>
 									</div>
 								<?php
 							}

@@ -1061,8 +1061,8 @@ class AnantFlipbox extends \Elementor\Widget_Base {
 		$back_link_button_icon = $settings['back_button_icon'];
 		$back_link_button_position = $settings['back_button_position'];
 		$back_link = $settings['back_card_link']['url'];
-		$back_target = $settings['back_card_link']['is_external'] ? ' target="_blank"' : '';
-		$back_nofollow = $settings['back_card_link']['nofollow'] ? ' rel="nofollow"' : '';
+		$back_target = $settings['back_card_link']['is_external'] ? ' target=_blank' : '';
+		$back_nofollow = $settings['back_card_link']['nofollow'] ? ' rel=nofollow' : '';
 
 		if ($template_style == 'layout_1') {
 			?>
@@ -1090,8 +1090,8 @@ class AnantFlipbox extends \Elementor\Widget_Base {
 					<a
 						class="ant-btn <?php echo esc_attr($this->flip_btn_class )?> <?php echo $back_link_button_position === 'before' ? 'anant-no-flex': '' ?>"
 						href="<?php echo esc_url($back_link) ?>"
-						<?php echo $back_target ?>
-						<?php echo $back_nofollow ?>>
+						<?php echo esc_attr($back_target) ?>
+						<?php echo esc_attr($back_nofollow) ?>>
 						<?php 
 							if ($back_link_button_position === 'before') {
 								\Elementor\Icons_Manager::render_icon( $back_link_button_icon, [ 'aria-hidden' => 'true' ] );

@@ -772,7 +772,7 @@ class AnantPostComments extends \Elementor\Widget_Base {
 						<?php
 						if ( '1' === $comments_number ) {
 							/* translators: %s: post title */
-							printf( esc_html__( 'One thought on &ldquo;%s&rdquo;', 'newsair' ), esc_html($title) );
+							printf( esc_html__( 'One thought on &ldquo;%s&rdquo;', 'anant-addons-for-elementor' ), esc_html($title) );
 						} else {
 							printf(
 								   esc_html(
@@ -782,7 +782,7 @@ class AnantPostComments extends \Elementor\Widget_Base {
 										  '%1$s thoughts on &ldquo;%2$s&rdquo;',
 										  $comments_number,
 										  'comments title',
-										  'newsair'
+										  'anant-addons-for-elementor'
 									   )
 								   ),
 								   esc_html (number_format_i18n( $comments_number ) ),
@@ -795,11 +795,11 @@ class AnantPostComments extends \Elementor\Widget_Base {
 			
 					<?php if ( $comments_number > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
 					<nav id="comment-nav-above" class="navigation comment-navigation" role="navigation">
-						<h2 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'newsair' ); ?></h2>
+						<h2 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'anant-addons-for-elementor' ); ?></h2>
 						<div class="nav-links">
 			
-							<div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'newsair' ) ); ?></div>
-							<div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'newsair' ) ); ?></div>
+							<div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'anant-addons-for-elementor' ) ); ?></div>
+							<div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'anant-addons-for-elementor' ) ); ?></div>
 			
 						</div><!-- .nav-links -->
 					</nav><!-- #comment-nav-above -->
@@ -809,18 +809,18 @@ class AnantPostComments extends \Elementor\Widget_Base {
 						<?php
 							wp_list_comments( array(
 								'style'      => 'ol',
-								'newsair_ping' => true,
+								'ant_ping' => true,
 							), $comments );
 						?>
 					</ol><!-- .comment-list -->
 			
 					<?php if ( $comments_number > 1 && get_option( 'page_comments' ) ) : // Are there comments to navigate through? ?>
 					<nav id="comment-nav-below" class="navigation comment-navigation" role="navigation">
-						<h5 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'newsair' ); ?></h5>
+						<h5 class="screen-reader-text"><?php esc_html_e( 'Comment navigation', 'anant-addons-for-elementor' ); ?></h5>
 						<div class="nav-links">
 			
-							<div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'newsair' ) ); ?></div>
-							<div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'newsair' ) ); ?></div>
+							<div class="nav-previous"><?php previous_comments_link( esc_html__( 'Older Comments', 'anant-addons-for-elementor' ) ); ?></div>
+							<div class="nav-next"><?php next_comments_link( esc_html__( 'Newer Comments', 'anant-addons-for-elementor' ) ); ?></div>
 			
 						</div><!-- .nav-links -->
 					</nav><!-- #comment-nav-below -->
@@ -830,7 +830,7 @@ class AnantPostComments extends \Elementor\Widget_Base {
 				endif; // Check for have_comments().
 				
 				if ( ! comments_open($post) && get_comments_number($post) && post_type_supports( get_post_type(), 'comments' ) ) : ?>
-					<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'newsair' ); ?></p>
+					<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'anant-addons-for-elementor' ); ?></p>
 				<?php
 				endif;
 				comment_form( array(), $post);

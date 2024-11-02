@@ -143,12 +143,12 @@ class AnantImageComparison extends \Elementor\Widget_Base {
 				'type' => Controls_Manager::SELECT,
 				'default' => '\f105',
 				'options' => [
-					'\f105' => esc_html__( 'Angle'),
-					'\f0da' => esc_html__( 'Caret'),
-					'\f061' => esc_html__( 'Arrow'),
-					'\f30b' => esc_html__( 'Long Arrow'),
-					'\f054' => esc_html__( 'Chevron' ),
-					'\f101' => esc_html__( 'Angle Double' ),
+					'\f105' => esc_html__( 'Angle', 'anant-addons-for-elementor' ),
+					'\f0da' => esc_html__( 'Caret', 'anant-addons-for-elementor' ),
+					'\f061' => esc_html__( 'Arrow', 'anant-addons-for-elementor' ),
+					'\f30b' => esc_html__( 'Long Arrow', 'anant-addons-for-elementor' ),
+					'\f054' => esc_html__( 'Chevron', 'anant-addons-for-elementor' ),
+					'\f101' => esc_html__( 'Angle Double', 'anant-addons-for-elementor' ),
 				],
 				'selectors' => [
 					"{{WRAPPER}} .image-comparison .jx-arrow.jx-left::before" => "content: '{{VALUE}}';",

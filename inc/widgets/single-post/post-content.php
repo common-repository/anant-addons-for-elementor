@@ -184,7 +184,7 @@ class AnantPostDescription extends \Elementor\Widget_Base {
         echo '<div class="anant-post-content ">';
 		echo '<article class="single-post-content content">';
 			// echo '<a href="'.esc_attr($link).'" >'.esc_html($title).'</a>';
-			echo ($content);
+			echo wp_kses_post($content);
 		echo '</article>';
         echo '</div>';
 

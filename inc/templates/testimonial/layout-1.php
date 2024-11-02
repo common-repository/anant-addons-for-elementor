@@ -45,7 +45,7 @@
 			if ( $show_name === 'yes' ) {
 				?>
 					<h6 class="user-title <?php echo esc_attr($this->testimonial_card_name_class )?>">
-						<a href="<?php echo esc_url($link) ?>" <?php echo $target ?> <?php echo $nofollow ?>>
+						<a href="<?php echo esc_url($link) ?>" <?php echo esc_attr($target) ?> <?php echo esc_attr($nofollow) ?>>
 							<?php echo esc_html($name) ?>
 						</a>
 					</h6>				

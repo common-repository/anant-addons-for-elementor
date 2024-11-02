@@ -234,7 +234,7 @@ class AnantProductSku extends \Elementor\Widget_Base {
 
 		<div class="anant-product-sku">
 			<span class="ant-info-sku">SKU:</span> 
-			<?php if( $product->get_sku() !== '' ) { echo '<span class="single-sku">'.$product->get_sku().'</span>'; }
+			<?php if( $product->get_sku() !== '' ) { echo '<span class="single-sku">'.esc_html($product->get_sku()).'</span>'; }
 			else{ echo "Sku has not been defined."; } ?>
         </div>
 

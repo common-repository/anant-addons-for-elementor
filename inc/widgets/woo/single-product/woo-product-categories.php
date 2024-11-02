@@ -268,15 +268,17 @@ class AnantProductCategories extends \Elementor\Widget_Base {
             if ( ! $product ) {
                 return;
             }
-		} ?>
+		} 
+		$cat = (count($terms) == 1) ?  'Category:' : 'Categories:'; ?>
 
 		<div class="anant-product-cate"> 
 			<?php if (!empty($terms) && !is_wp_error($terms)) {
-			if($show_cat_title == 'yes'){ ?>
-			<span class="ant-info-list"><?php echo (count($terms) == 1) ?  'Category:' : 'Categories:'; ?></span> 
-				<?php } foreach ($terms as $term) {
+				if($show_cat_title == 'yes'){ ?>
+					<span class="ant-info-list"><?php echo esc_html($cat); ?></span> 
+				<?php } 
+				foreach ($terms as $term) {
 					$term_link = get_term_link($term); 
-					echo '<a href="' . esc_url($term_link) . '" class="single-cat">'.$term->name.'</a>';
+					echo '<a href="' . esc_url($term_link) . '" class="single-cat">'.esc_html($term->name).'</a>';
 				} ?>
 			<?php } else{ echo "Categories has not been defined."; } ?>
         </div>

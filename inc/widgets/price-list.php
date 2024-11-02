@@ -129,7 +129,7 @@ class AnantPriceList extends \Elementor\Widget_Base {
 			]
 		);
 	
-		$description = 'Aenean ut turpis blandit eros convallis congue sit amet a libero.';
+		$description = esc_html__( 'Aenean ut turpis blandit eros convallis congue sit amet a libero.', 'anant-addons-for-elementor' );
 
 		$repeater->add_control(
 			'card_description',
@@ -137,7 +137,7 @@ class AnantPriceList extends \Elementor\Widget_Base {
 				'label' => __( 'Description', 'anant-addons-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA, 
 				'label_block' => true,
-				'default' =>__( $description, 'anant-addons-for-elementor'),	
+				'default' => esc_html( $description),	
 			]
 		);
 
@@ -151,12 +151,12 @@ class AnantPriceList extends \Elementor\Widget_Base {
 					[
 						'card_title'  => __('Cafe Latte', 'anant-addons-for-elementor'),						
 						'card_amount' => __('$99', 'anant-addons-for-elementor'),
-						'card_description' => __($description, 'anant-addons-for-elementor'),
+						'card_description' => esc_html( $description),
 					],
 					[
 						'card_title'  => __('Cafe Latte', 'anant-addons-for-elementor'),						
 						'card_amount' => __('$99', 'anant-addons-for-elementor'),
-						'card_description' => __($description, 'anant-addons-for-elementor'),
+						'card_description' => esc_html( $description),
 					],
 				],
 				'title_field' => '{{{ card_title }}}',
@@ -733,10 +733,10 @@ class AnantPriceList extends \Elementor\Widget_Base {
 				'type'        => \Elementor\Controls_Manager::SELECT,
 				'default'     => 'dashed',
 				'options'     => [
-					'none'      => esc_html__( 'None' ),
-					'solid'      => esc_html__( 'Solid' ),
-					'dotted'      => esc_html__( 'Dotted' ),
-					'dashed'      => esc_html__( 'Dashed' ),
+					'none'      => esc_html__( 'None', 'anant-addons-for-elementor' ),
+					'solid'      => esc_html__( 'Solid', 'anant-addons-for-elementor' ),
+					'dotted'      => esc_html__( 'Dotted', 'anant-addons-for-elementor' ),
+					'dashed'      => esc_html__( 'Dashed', 'anant-addons-for-elementor' ),
 				],
 				'selectors' => [
 					'{{WRAPPER}} .'.$this->price_list_feature_separator_class => 'border-bottom-style:{{VALUE}};',

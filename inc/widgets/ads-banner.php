@@ -159,7 +159,7 @@ class AnantAdsBanner extends \Elementor\Widget_Base {
 				'default' => [
 					'url' => anant_placeholder_image_src(),
 				],
-				'description' => __('use PNG image'),
+				'description' => __('use PNG image', 'anant-addons-for-elementor' ),
 				'condition' => [
 					'template_style' => [ 'one'],
 				],
@@ -740,8 +740,8 @@ class AnantAdsBanner extends \Elementor\Widget_Base {
 		$subtitle = $settings['card_subtitle'];
 		$card_btn = $settings['card_btn'];
 		$link = $settings['card_link']['url'];
-		$target = $settings['card_link']['is_external'] ? ' target="_blank"' : '';
-		$nofollow = $settings['card_link']['nofollow'] ? ' rel="nofollow"' : '';
+		$target = $settings['card_link']['is_external'] ? ' target=_blank' : '';
+		$nofollow = $settings['card_link']['nofollow'] ? ' rel=nofollow' : '';
 
 		$template_style = $settings['template_style'];
 
@@ -769,7 +769,7 @@ class AnantAdsBanner extends \Elementor\Widget_Base {
 
 			  <?php if($show_btn == 'yes') { ?>
 				<div class="ant-banner-button">
-						<a href="<?php echo esc_url($link) ?>" <?php echo $target ?> <?php echo $nofollow ?> class="more <?php echo esc_attr($this->ads_banner_btn) ?>">
+						<a href="<?php echo esc_url($link) ?>" <?php echo esc_attr($target) ?> <?php echo esc_attr($nofollow) ?> class="more <?php echo esc_attr($this->ads_banner_btn) ?>">
 							<?php echo esc_html($card_btn) ?>
 						</a>
 					</div>          

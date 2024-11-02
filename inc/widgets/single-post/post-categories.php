@@ -225,11 +225,12 @@ class AnantPostCategories extends \Elementor\Widget_Base {
 		$cats = wp_get_object_terms($post_id, 'category');
 		$cat_style = $settings['category_style']; ?>
 		<?php if($cat_style === 'one' || $cat_style === 'two' ) { ?>
-			<div class="ant-blog-category <?php esc_attr_e($cat_style); ?> <?php esc_attr_e($this->single_blog_category); ?>">
+			<div class="ant-blog-category <?php echo esc_attr($cat_style); ?> <?php echo esc_attr($this->single_blog_category); ?>">
 			<?php if (!empty($cats) && !is_wp_error($cats)) { ?> 
 					<?php foreach ($cats as $cat) {
 						$cats_link = get_term_link($cat); 
-						echo '<a href="' . esc_url($cats_link) . '" class="single-cat">'.$cat->name.'</a>';
+						$cat_name = $cat->name; 
+						echo '<a href="' . esc_url($cats_link) . '" class="single-cat">'.esc_html($cat_name).'</a>';
 					} ?>
 				<?php } else{ echo "Categories has not been defined."; } ?>
             </div>

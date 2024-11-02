@@ -7,8 +7,8 @@ function  anant_admin_page_init() {
 
   add_submenu_page(
     'anant_admin_menu',
-    __('Theme Builder'),
-    __('Theme Builder'),
+    __('Theme Builder', 'anant-addons-for-elementor'),
+    __('Theme Builder', 'anant-addons-for-elementor'),
     'manage_options',
     'edit.php?post_type=anant-header-footer'
   );
@@ -401,16 +401,16 @@ function anant_admin_page() {
 
                   if( $cats['widget_cat'] !== 'Anant Woocommerce' && ($cats['widget_cat'] !== 'Anant Single Product') ){ ?>
                     <div class="heading">
-                      <h3 class="tittle"><?php echo $cats['widget_cat'] ?> </h3>
+                      <h3 class="tittle"><?php echo esc_html($cats['widget_cat']); ?> </h3>
                     </div>
                   <?php }else{
                     if ( class_exists( 'woocommerce' ) ) { ?>
                       <div class="heading">
-                        <h3 class="tittle"><?php echo $cats['widget_cat'] ?> </h3>
+                        <h3 class="tittle"><?php echo esc_html($cats['widget_cat']); ?> </h3>
                       </div>
                     <?php }else{ ?>
                       <div class="heading">
-                        <h3 class="tittle"><?php echo $cats['widget_cat'] ?> </h3>
+                        <h3 class="tittle"><?php echo esc_html($cats['widget_cat']); ?> </h3>
                         <p class="anant-install-activate-woocommerce">
                           <span class="dashicons dashicons-info-outline"></span> 
                           <?php echo esc_html('Install and activate WooCommerce to use these widgets'); ?>
@@ -538,7 +538,7 @@ function anant_admin_page() {
                               // Loop through the posts and pages
                               foreach ($all_posts as $post) {
                                   $selected = ($saved_value == $post->ID) ? 'selected="selected"' : '';
-                                  echo '<option value="' . esc_attr($post->ID) . '" ' . $selected . '>' . esc_html($post->post_title) . '</option>';
+                                  echo '<option value="' . esc_attr($post->ID) . '" ' . esc_attr($selected) . '>' . esc_html($post->post_title) . '</option>';
                               }
                           ?>
                         </select>
@@ -567,7 +567,7 @@ function anant_admin_page() {
                       <a href="#"><i class="fas fa-search"></i></a>
                     </div>
                     <div class="slide-btn">
-                      <input type="radio" id="radio-3" name="anant_tab2_settings" <?php $All_in_one_toggle2 == 'on' ? esc_attr_e('checked="checked"') : checked( '0', get_option( 'anant_tab2_settings' ) ); ?> value="0" />
+                      <input type="radio" id="radio-3" name="anant_tab2_settings" <?php echo ($All_in_one_toggle2 == 'on' ? esc_attr('checked="checked"') : checked( '0', get_option( 'anant_tab2_settings' ) ) ); ?> value="0" />
                       <label class="tab" for="radio-3"><?php echo esc_html('Activate All'); ?></label>
                       <input type="radio" id="radio-4" name="anant_tab2_settings" <?php checked( '1', get_option( 'anant_tab2_settings' ) ); ?> value="1" />
                       <label class="tab" for="radio-4"><?php echo esc_html('Deactivate All'); ?></label>
@@ -598,7 +598,7 @@ function anant_admin_page() {
                     </div>
                     <!-- /anant-admin-widget --> 
                   <?php } else {
-                    $widget_id = explode(" ",$widget['name']);
+                    $widget_id = explode(" ",$widget['slug']);
                     $widget_id = implode("-anant-",$widget_id); ?>
                         <!-- anant-admin-widget -->
                         <div class="anant-admin-widget free" data-item="free">

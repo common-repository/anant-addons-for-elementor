@@ -205,10 +205,10 @@ class AnantProductGridWithNav extends \Elementor\Widget_Base {
 		return;
 
 		$all_products = wc_get_products( $args );
-		$products = $all_products->products;;
+		$products = $all_products->products;
 
-		echo $all_products->total . ' products found\n';
-		echo 'Page 1 of ' . $all_products->max_num_pages . '\n';
+		echo esc_html($all_products->total) . ' products found\n';
+		echo 'Page 1 of ' . esc_html($all_products->max_num_pages) . '\n';
 		require ANANT_PATH . 'inc/templates/style-1/product-grid-template.php';
 
 	}
@@ -248,13 +248,13 @@ class AnantProductGridWithNav extends \Elementor\Widget_Base {
 		// Previous link
 		$prev_link = $this->custom_previous_posts_page_link( $paged );
 		if ( $prev_link ) {
-			echo "<li><a href='". $prev_link ."' class='page-numbers anant-pagi-pre-btn'>Previous</a></li>";
+			echo "<li><a href='". esc_url($prev_link) ."' class='page-numbers anant-pagi-pre-btn'>Previous</a></li>";
 		}
 	
 		// Next link
 		$next_link = $this->custom_next_posts_page_link( $paged, $max );
 		if ( $next_link ) {
-			echo "<li><a href='". $next_link ."' class='page-numbers'>Next</a></li>";
+			echo "<li><a href='". esc_url($next_link) ."' class='page-numbers'>Next</a></li>";
 		}
 	
 		echo '</ul></div>' . "\n";

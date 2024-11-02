@@ -121,12 +121,12 @@ class AnantTestimonial extends \Elementor\Widget_Base {
 			]
 		);
 
-		$title ='Professional Team';
+		$title = __( 'Professional Team', 'anant-addons-for-elementor' );
 		$this->add_control(
 			'card_title', [
 				'label' => __( 'Title', 'anant-addons-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( $title , 'anant-addons-for-elementor' ),
+				'default' => esc_html( $title ),
 				'label_block' => true,
 			]
 		);
@@ -152,14 +152,15 @@ class AnantTestimonial extends \Elementor\Widget_Base {
 				],
 			]
 		);
-		$description = 'Aenean ut turpis blandit eros convallis congue sit amet a libero. Mauris sed tempor felis. ';
+
+		$description = __( 'Aenean ut turpis blandit eros convallis congue sit amet a libero. Mauris sed tempor felis.', 'anant-addons-for-elementor' );
 		$this->add_control(
 			'card_description',
 			[
 				'label' => __( 'Description', 'anant-addons-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
 				'rows' => 10,
-				'default' => __( $description, 'anant-addons-for-elementor' ),
+				'default' => esc_html( $description ),
 				'placeholder' => __( 'Type your description here', 'anant-addons-for-elementor' ),
 			]
 		);
@@ -175,23 +176,23 @@ class AnantTestimonial extends \Elementor\Widget_Base {
 			]
 		);
 
-		$name = 'John Doe';
+		$name = __( 'John Doe', 'anant-addons-for-elementor' );
 		$this->add_control(
 			'card_name', [
 				'label' => __( 'Name', 'anant-addons-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( $name , 'anant-addons-for-elementor' ),
+				'default' => esc_html( $name ),
 				'label_block' => true,
 			]
 		);
 		
-		$designation = 'Designer';
+		$designation = __( 'Designer', 'anant-addons-for-elementor' );
 		$this->add_control(
 			'card_designation',
 			[
 				'label' => __( 'Designation', 'anant-addons-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::TEXT, 
-				'default' => __( $designation, 'anant-addons-for-elementor' ),
+				'default' => esc_html( $designation ),
 				'placeholder' => __( 'Type your designation here', 'anant-addons-for-elementor' ),
 			]
 		);
@@ -1173,8 +1174,8 @@ class AnantTestimonial extends \Elementor\Widget_Base {
 		$image_url = $settings['card_image']['url'];
 		$card_icon = $settings['card_icon'];
 		$link = $settings['card_link']['url'];
-		$target = $settings['card_link']['is_external'] ? ' target="_blank"' : '';
-		$nofollow = $settings['card_link']['nofollow'] ? ' rel="nofollow"' : '';
+		$target = $settings['card_link']['is_external'] ? ' target=_blank' : '';
+		$nofollow = $settings['card_link']['nofollow'] ? ' rel=nofollow' : '';
 
 		$template_style = $settings['template_style'];
 

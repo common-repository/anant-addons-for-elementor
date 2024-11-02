@@ -452,15 +452,15 @@ class AnantCreativeIcon extends \Elementor\Widget_Base {
   
 		$link_icon_icon = $settings['link_icon_icon'];
 		$link = $settings['card_link']['url'];
-		$target = $settings['card_link']['is_external'] ? ' target="_blank"' : '';
-		$nofollow = $settings['card_link']['nofollow'] ? ' rel="nofollow"' : '';
+		$target = $settings['card_link']['is_external'] ? ' target=_blank' : '';
+		$nofollow = $settings['card_link']['nofollow'] ? ' rel=nofollow' : '';
 		?>
 
 		<div class="ant-creative-icon <?php echo esc_attr($this->icon_card_class);?>">
 			<a class="more <?php echo esc_attr($this->icon_class);?>"
 				href="<?php echo esc_url($link) ?>"
-				<?php echo $target ?>
-				<?php echo $nofollow ?>>
+				<?php echo esc_attr($target) ?>
+				<?php echo esc_attr($nofollow) ?>>
 				<?php \Elementor\Icons_Manager::render_icon( $link_icon_icon, [ 'aria-hidden' => 'true' ] ); ?> 
 			</a>
 		</div>

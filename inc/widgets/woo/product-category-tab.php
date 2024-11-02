@@ -2,7 +2,7 @@
 namespace AnantAddons;
 
 use Elementor\Controls_Manager;
-use Elementor\Group_Control_Background;;
+use Elementor\Group_Control_Background;
 
 class AnantProductCategoryTabWidget extends \Elementor\Widget_Base {
 
@@ -141,7 +141,7 @@ class AnantProductCategoryTabWidget extends \Elementor\Widget_Base {
 									$term = get_term($id, 'product_cat');
 									if($term == NULL || $term == false){ continue; } 
 									?>
-									<li data-anant-cat-slug=<?php echo $term->slug ?> data-id="anant-<?php echo esc_attr($id) . '-' . esc_attr($this->get_id()); ?>" class="<?php echo esc_attr($active_class); ?>" >
+									<li data-anant-cat-slug=<?php echo esc_attr($term->slug); ?> data-id="anant-<?php echo esc_attr($id) . '-' . esc_attr($this->get_id()); ?>" class="<?php echo esc_attr($active_class); ?>" >
 
 									<?php echo esc_html($term->name); ?>
 

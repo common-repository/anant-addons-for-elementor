@@ -1074,7 +1074,7 @@ class AnantProductDetails extends \Elementor\Widget_Base {
 		// $this->add_control(
 		// 	$slug.'_star_size',
 		// 	[
-		// 		'label' => __( 'Star Size', 'codesigner' ),
+		// 		'label' => __( 'Star Size', 'anant-addons-for-elementor' ),
 		// 		'type' => Controls_Manager::SLIDER,
 		// 		'size_units' => [ 'px', 'em' ],
 		// 		'default' => [
@@ -1102,7 +1102,7 @@ class AnantProductDetails extends \Elementor\Widget_Base {
 		// $this->add_control(
 		// 	$slug.'_space_between',
 		// 	[
-		// 		'label' => __( 'Space Between', 'codesigner' ),
+		// 		'label' => __( 'Space Between', 'anant-addons-for-elementor' ),
 		// 		'type' => Controls_Manager::SLIDER,
 		// 		'size_units' => [ 'px', 'em' ],
 		// 		'default' => [
@@ -1290,7 +1290,7 @@ class AnantProductDetails extends \Elementor\Widget_Base {
 		$this->add_control(
 			$slug.'_size',
 			[
-				'label' => __( 'Star Size', 'codesigner' ),
+				'label' => __( 'Star Size', 'anant-addons-for-elementor' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', 'em' ],
 				'default' => [
@@ -1317,7 +1317,7 @@ class AnantProductDetails extends \Elementor\Widget_Base {
 		$this->add_control(
 			$slug.'_space_between',
 			[
-				'label' => __( 'Space Between', 'codesigner' ),
+				'label' => __( 'Space Between', 'anant-addons-for-elementor' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', 'em' ],
 				'default' => [
@@ -1715,7 +1715,7 @@ class AnantProductDetails extends \Elementor\Widget_Base {
 
         setup_postdata( $product->get_id() ); ?>
 
-		<div class="anant-product-details woocommerce" prev-type="<?php esc_attr_e($preview_type); ?>" >
+		<div class="anant-product-details woocommerce" prev-type="<?php echo esc_attr($preview_type); ?>" >
 			<?php wc_get_template( 'single-product/tabs/tabs.php' );	?>
 		</div>
 

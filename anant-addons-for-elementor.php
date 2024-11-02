@@ -4,7 +4,7 @@
 * Description: High quality addons for elementor with 50+ stunning free anant including Filterable Gallery, WooCommerce, and many more.
 * Author: Anantaddons, Anantsites
 * Author URI: https://anantaddons.com
-* Version: 1.0.4
+* Version: 1.0.5
 * License: GPLv3
 * License URI: https://opensource.org/licenses/GPL-3.0
 * Text Domain: anant-addons-for-elementor
@@ -34,7 +34,7 @@ if ( !class_exists('ANANT_ADDONS') ) {
 				define( 'ANANT_DOAMIN', 'anant-addons-for-elementor' ); //Pro Link
 				define( 'ANANT_PATH', plugin_dir_path( ANANT ) );
 				define( 'ANANT_URL', plugin_dir_url( ANANT ) );
-				define( 'ANANT_VERSION', '1.0.4' ); //Plugin Version
+				define( 'ANANT_VERSION', '1.0.5' ); //Plugin Version
 				define( 'ANANT_MIN_ELEMENTOR_VERSION', '2.0.0' ); //MINIMUM ELEMENTOR Plugin Version
 				define( 'ANANT_MIN_PHP_VERSION', '5.4' ); //MINIMUM PHP Plugin Version
 				define( 'ANANT_PRO_LINK', 'https://anantaddons.com/' ); //Pro Link

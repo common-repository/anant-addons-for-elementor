@@ -39,16 +39,17 @@ if ( ! function_exists( 'anant_pro_promotion_controls' ) ) {
 
 function anant_select2_control( $obj, $params ) {
 	$label       = $params['label'];
-	$placeholder = $params['placeholder'];
+    $placeholder = isset( $params['placeholder'] ) ? esc_html( $params['placeholder'], 'anant-addons-for-elementor' ) : '';
 	$key         = $params['key'];
 	$default   = array_key_exists( 'default', $params ) ? $params['default'] : '';
 	$classes   = array_key_exists( 'classes', $params ) ? $params['classes'] : '';
-	$label = array_key_exists( 'escape', $params ) && $params['escape'] == false ? esc_html__( $label, 'anant-addons-for-elementor' ) .' <i class="eicon-pro-icon"></i>'  : esc_html__( $label, 'anant-addons-for-elementor' );
+	$translated_label = esc_html( $label, 'anant-addons-for-elementor' );
+	$label = array_key_exists( 'escape', $params ) && $params['escape'] == false ? esc_html( $label ) .' <i class="eicon-pro-icon"></i>'  : esc_html( $label );
 	return $obj->add_control(
 		$key,
 		[
 			'label'       => $label,
-			'placeholder' => esc_html__( $placeholder, 'anant-addons-for-elementor' ),
+			'placeholder' => esc_html( $placeholder ),
 			'type'        => Controls_Manager::SELECT2,
 			'label_block' => true,
 			'multiple'    => $params['multiple'],
@@ -67,14 +68,15 @@ function anant_switcher_control( $obj, $params ) {
 	$default   = array_key_exists( 'default', $params ) ? $params['default'] : 'no';
 	$description   = array_key_exists( 'description', $params ) ? $params['description'] : '';
 	$classes   = array_key_exists( 'classes', $params ) ? $params['classes'] : '';
-	$label = array_key_exists( 'escape', $params ) && $params['escape'] == false ? esc_html__( $label, 'anant-addons-for-elementor' ) .' <i class="eicon-pro-icon"></i>'  : esc_html__( $label, 'anant-addons-for-elementor' );
+	$translated_label = esc_html( $label, 'anant-addons-for-elementor' );
+	$label = array_key_exists( 'escape', $params ) && $params['escape'] == false ? esc_html( $label ) .' <i class="eicon-pro-icon"></i>'  : esc_html( $label );
 	return $obj->add_control(
 		$key,
 		[
 			'label'        =>  $label,
 			'type'         => Controls_Manager::SWITCHER,
-			'label_on'     => esc_html__( $on_label, 'anant-addons-for-elementor' ),
-			'label_off'    => esc_html__( $off_label, 'anant-addons-for-elementor' ),
+			'label_on'     => esc_html( $on_label, 'anant-addons-for-elementor' ),
+			'label_off'    => esc_html( $off_label, 'anant-addons-for-elementor' ),
 			'return_value' => 'yes',
 			'default'      => $default,
 			'description' => $description,
@@ -93,13 +95,14 @@ function anant_number_control( $obj, $params ) {
 	$condition   = array_key_exists( 'condition', $params ) ? $params['condition'] : [];
 	$description   = array_key_exists( 'description', $params ) ? $params['description'] : '';
 	$classes   = array_key_exists( 'classes', $params ) ? $params['classes'] : '';
-	$label = array_key_exists( 'escape', $params ) && $params['escape'] == false ? esc_html__( $label, 'anant-addons-for-elementor' ) .' <i class="eicon-pro-icon"></i>'  : esc_html__( $label, 'anant-addons-for-elementor' );
+	$translated_label = esc_html( $label, 'anant-addons-for-elementor' );
+	$label = array_key_exists( 'escape', $params ) && $params['escape'] == false ? esc_html( $label ) .' <i class="eicon-pro-icon"></i>'  : esc_html( $label );
 
 	return $obj->add_control(
 		$key,
 		[
 			'label'       => $label,
-			'placeholder' => esc_html__( $placeholder, 'anant-addons-for-elementor' ),
+			'placeholder' => esc_html( $placeholder, 'anant-addons-for-elementor' ),
 			'type'        => Controls_Manager::NUMBER,
 			'min'         => $min,
 			'max'         => $max,
@@ -123,8 +126,8 @@ function anant_number_responsive_control( $obj, $params ) {
 	return $obj->add_responsive_control(
 		$key,
 		[
-			'label'       => esc_html__( $label, 'anant-addons-for-elementor' ),
-			'placeholder' => esc_html__( $placeholder, 'anant-addons-for-elementor' ),
+			'label'       => esc_html( $label, 'anant-addons-for-elementor' ),
+			'placeholder' => esc_html( $placeholder, 'anant-addons-for-elementor' ),
 			'type'        => Controls_Manager::NUMBER,
 			'min'         => $min,
 			'max'         => $max,
@@ -292,7 +295,7 @@ function anant_color_control( $obj, $params ) {
 	return $obj->add_control(
 		$key,
 		[
-			'label'     => __( $label, 'anant-addons-for-elementor' ),
+			'label'     => esc_html( $label, 'anant-addons-for-elementor' ),
 			'type'      => Controls_Manager::COLOR,
 			'selectors' => $selectors,
 			'separator' => $separator,

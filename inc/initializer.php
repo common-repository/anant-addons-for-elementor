@@ -733,7 +733,6 @@ class Plugin {
 		require_once ANANT_PATH . 'inc/widgets/price.php';
 		require_once ANANT_PATH . 'inc/widgets/business-hours.php';
 		require_once ANANT_PATH . 'inc/widgets/price-list.php';
-		require_once ANANT_PATH . 'inc/widgets/heading.php';
 		require_once ANANT_PATH . 'inc/widgets/filter-gallery.php';
 		require_once ANANT_PATH . 'inc/widgets/author-list.php';
 		require_once ANANT_PATH . 'inc/widgets/image-comparison.php';

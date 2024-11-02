@@ -1364,8 +1364,8 @@ class AnantFilterGalley extends \Elementor\Widget_Base {
 				$subtitle = $item['filter_description']; 
 				$image_url = $item['content_image']['url']; 
 				$link = $item['filter_link']['url'];
-				$target = $item['filter_link']['is_external'] ? ' target="_blank"' : '';
-				$nofollow = $item['filter_link']['nofollow'] ? ' rel="nofollow"' : ''; ?>
+				$target = $item['filter_link']['is_external'] ? ' target=_blank' : '';
+				$nofollow = $item['filter_link']['nofollow'] ? ' rel=nofollow' : ''; ?>
 				<div class="anant-fg-project" data-filter="<?php echo esc_attr($item['filter_name']) ?>">
 				<?php 
 				$template_card_style = $settings['template_card_style'];

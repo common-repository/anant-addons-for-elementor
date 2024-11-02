@@ -350,9 +350,9 @@ class AnantProductArchiveTitle extends \Elementor\Widget_Base {
 			// } 
 		}
 
-		echo '<'. $settings['product_archive_title_tag'] .' class="anant-archive-title title">';
-			echo ($title);
-		echo '</'. $settings['product_archive_title_tag'] .'>';
+		echo '<'. esc_attr($settings['product_archive_title_tag']) .' class="anant-archive-title title">';
+			echo wp_kses_post($title);
+		echo '</'. esc_attr($settings['product_archive_title_tag']) .'>';
 	}
 	
 }

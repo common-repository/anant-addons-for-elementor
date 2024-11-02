@@ -365,7 +365,7 @@ class AnantPostMeta extends \Elementor\Widget_Base {
 		
 		$date_format = $settings['date_format'];
 		$time_format = $settings['time_format'];
-		$author_by	 = $settings['by_author'] === 'yes' ? esc_html('By','anant-addons-for-elementor') : '';
+		$author_by	 = $settings['by_author'] === 'yes' ? 'By' : '';
 		$author_id   = $post->post_author;
 		$author_name = get_the_author_meta('display_name', $author_id);
 		?>
@@ -378,7 +378,7 @@ class AnantPostMeta extends \Elementor\Widget_Base {
 							?>
 							<span class="ant-single-author">
 								<a class="ant-single-author-pic" href="<?php echo esc_url(get_author_posts_url($author_id)); ?>">
-									<?php echo get_avatar($author_id, 150); ?> <?php echo $author_by; ?> <?php echo $author_name; ?>
+									<?php echo get_avatar($author_id, 150); ?> <?php echo esc_html($author_by); ?> <?php echo esc_html($author_name); ?>
 								</a>
 							</span>
 							<?php
@@ -403,7 +403,7 @@ class AnantPostMeta extends \Elementor\Widget_Base {
 								<span class="ant-single-blog-time">
 									<i class="far fa-clock"></i>
 									<a href="<?php echo esc_url($date_url); ?>">
-										<?php echo get_the_time($time_format, $post); ?>
+										<?php echo wp_kses_post(get_the_time($time_format, $post)); ?>
 									</a>
 								</span>
 								<?php
@@ -415,7 +415,7 @@ class AnantPostMeta extends \Elementor\Widget_Base {
 							<span class="ant-comments-link">
 								<i class="far fa-comments"></i>
 								<a href="<?php the_permalink($post); ?>#comment">
-									<?php echo get_comments_number($post); ?> <?php esc_html_e('Comments', 'anant-addons-for-elementor'); ?>
+									<?php echo esc_html(get_comments_number($post)); ?> <?php esc_html_e('Comments', 'anant-addons-for-elementor'); ?>
 								</a>
 							</span>
 							<?php

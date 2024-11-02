@@ -100,6 +100,7 @@ class AnantNavMenu extends Widget_Base {
                     'type'        => Controls_Manager::SELECT,
                     'options'     => $menus,
                     'default'     => array_keys( $menus )[0],
+                    // Translators: %s is the URL to the Menus admin page
                     'description' => sprintf( __( 'To manage nav menus, navigate to <a href="%s" target="_blank">Menus admin</a>.', 'anant-addons-for-elementor' ), admin_url( 'nav-menus.php' ) ),
                 )
             );
@@ -108,6 +109,7 @@ class AnantNavMenu extends Widget_Base {
                 'menu',
                 array(
                     'type'            => Controls_Manager::RAW_HTML,
+                    // Translators: %s is the URL to the Menus admin page
                     'raw'             => sprintf( __( '<strong>It seems no menus are created.</strong><br>Navigate to <a href="%s" target="_blank">Menus admin</a> and create one.', 'anant-addons-for-elementor' ), admin_url( 'nav-menus.php?action=edit&menu=0' ) ),
                     'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
                 )
@@ -366,7 +368,7 @@ class AnantNavMenu extends Widget_Base {
             Group_Control_Box_Shadow::get_type(),
             array(
                 'name'     => 'main_menu_box_shadow',
-                'label'     => esc_html__( 'Box Shadow'),
+                'label'    => esc_html__( 'Box Shadow', 'anant-addons-for-elementor' ),
                 'selector' => '{{WRAPPER}}  #ant-main-nav',
             )
         );
@@ -449,7 +451,7 @@ class AnantNavMenu extends Widget_Base {
             Group_Control_Box_Shadow::get_type(),
             array(
                 'name'     => 'main_menu_box_shadow_hover',
-                'label'     => esc_html__( 'Box Shadow'),
+                'label'     => esc_html__( 'Box Shadow', 'anant-addons-for-elementor' ),
                 'selector' => '{{WRAPPER}}  #ant-main-nav:hover',
             )
         );
@@ -616,7 +618,7 @@ class AnantNavMenu extends Widget_Base {
             Group_Control_Box_Shadow::get_type(),
             array(
                 'name'     => 'menus_box_shadow',
-                'label'     => esc_html__( 'Box Shadow'),
+                'label'     => esc_html__( 'Box Shadow', 'anant-addons-for-elementor' ),
                 'selector' => '{{WRAPPER}} .ant-main-menu > .menu-item',
             )
         );

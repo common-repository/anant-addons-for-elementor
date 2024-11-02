@@ -920,6 +920,41 @@ class AnantPostBlog extends \Elementor\Widget_Base {
 			]
 		);
 		
+		$this->add_responsive_control(
+			$slug.'_gap',
+			[
+				'label'           => __( 'Gap', 'anant-addons-for-elementor' ),
+				'type'            => Controls_Manager::SLIDER,
+				'size_units'      => [ 'px', '%' ],
+				'range'           => [
+					'px' => [
+						'min' => 0,
+						'max' => 120,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'devices'         => [ 'desktop', 'tablet', 'mobile' ],
+				'default' => [
+					'size' => 5,
+					'unit' => 'px',
+				],
+				'tablet_default'  => [
+					'size' => '',
+					'unit' => 'px',
+				],
+				'mobile_default'  => [
+					'size' => '',
+					'unit' => 'px',
+				],
+				'selectors'       => [
+					'{{WRAPPER}} .'.$this->blog_category => 'gap: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+		
 		$this->add_control(
 			$slug.'_color',
 			[
@@ -927,6 +962,17 @@ class AnantPostBlog extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}}  .'.$this->blog_category.' a' => 'color: {{VALUE}}',
+				],
+			]
+		);
+		
+		$this->add_control(
+			$slug.'_hover_color',
+			[
+				'label'     => __( 'Hover Color', 'anant-addons-for-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}}  .'.$this->blog_category.' a:hover' => 'color: {{VALUE}}',
 				],
 			]
 		);
@@ -941,6 +987,18 @@ class AnantPostBlog extends \Elementor\Widget_Base {
 				],
 			]
 		);
+		
+		$this->add_control(
+			$slug.'_bg_hover_color',
+			[
+				'label'     => __( 'Background Hover Color', 'anant-addons-for-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}}  .'.$this->blog_category.' a:hover' => 'background-color: {{VALUE}}; border-color: {{VALUE}};',
+				],
+			]
+		);
+
 		anant_typography_control(
 			$this,
 			[
@@ -1738,13 +1796,13 @@ class AnantPostBlog extends \Elementor\Widget_Base {
 		// Previous link
 		$prev_link = $this->custom_previous_posts_page_link( $paged );
 		if ( $prev_link ) {
-			echo "<li><a href='". $prev_link ."' class='page-numbers anant-pagi-pre-btn'>Previous</a></li>";
+			echo "<li><a href='". esc_url($prev_link) ."' class='page-numbers anant-pagi-pre-btn'>Previous</a></li>";
 		}
 	
 		// Next link
 		$next_link = $this->custom_next_posts_page_link( $paged, $max );
 		if ( $next_link ) {
-			echo "<li><a href='". $next_link ."' class='page-numbers'>Next</a></li>";
+			echo "<li><a href='". esc_url($next_link) ."' class='page-numbers'>Next</a></li>";
 		}
 	
 		echo '</ul></div>' . "\n";

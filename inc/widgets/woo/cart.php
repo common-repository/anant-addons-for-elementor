@@ -75,7 +75,7 @@ class AnantCart extends Widget_Base {
         $this->add_control(
 			'anant_cart_icon',
 			[
-				'label' => esc_html__( 'Icon', 'plugin-name' ),
+				'label' => esc_html__( 'Icon', 'anant-addons-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::ICONS,
 				'default' => [
 					'value' => 'fa fa-shopping-cart',
@@ -618,18 +618,18 @@ class AnantCart extends Widget_Base {
     	<div class="anant-cart anant-bor" >
 			<div class="cart-inner">
 				<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="cart <?php echo esc_attr($this->cart_button_class) ?>" >
-				<?php if($settings['show_subtotal'] === 'yes' ) { ?>
-					<span class='cart-total <?php echo esc_attr($this->cart_total_class) ?>'>
-						<?php echo WC()->cart->get_cart_subtotal(); ?>
-					</span>
-				<?php } ?>    
+					<?php if($settings['show_subtotal'] === 'yes' ) { ?>
+						<span class='cart-total <?php echo esc_attr($this->cart_total_class) ?>'>
+							<?php echo wp_kses_post(WC()->cart->get_cart_subtotal()); ?>
+						</span>
+					<?php } ?>    
 					<div class="cart-icon <?php echo esc_attr($this->cart_icon_class) ?>">
-					<?php \Elementor\Icons_Manager::render_icon( $settings['anant_cart_icon'], [ 'aria-hidden' => 'true' ] ); ?>
+						<?php \Elementor\Icons_Manager::render_icon( $settings['anant_cart_icon'], [ 'aria-hidden' => 'true' ] ); ?>
 					</div>
 					<?php if($settings['items_indicator'] === 'yes' ) { ?>   
-					<span class='counter <?php echo esc_attr($this->cart_counter_class) ?>'>
-						<?php echo $product_count; ?>
-					</span>
+						<span class='counter <?php echo esc_attr($this->cart_counter_class) ?>'>
+							<?php echo esc_html($product_count); ?>
+						</span>
 					<?php } ?>
 				</a>       
 			</div>  

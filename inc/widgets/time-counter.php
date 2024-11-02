@@ -60,7 +60,7 @@ class AnantTimeCounter extends \Elementor\Widget_Base {
 		$this->add_control(
 			'counter_time',
 			[
-				'label' => esc_html__( 'Select Time', 'textdomain' ),
+				'label' => esc_html__( 'Select Time', 'anant-addons-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::DATE_TIME,
 			]
 		);
@@ -132,7 +132,6 @@ class AnantTimeCounter extends \Elementor\Widget_Base {
 			'counter_After_text', [
 				'label' => __( 'After Counter Text', 'anant-addons-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( '' , 'anant-addons-for-elementor' ),
 				'label_block' => true,
 			]
 		);

@@ -92,10 +92,10 @@ class AnantArchivePost extends \Elementor\Widget_Base {
 				'default'     => 'layout_1',
 				'options'     => [
 					'layout_1'      => esc_html__( 'Layout 1', 'anant-addons-for-elementor' ),
-					'layout_2'      => esc_html__( 'Layout 2', 'anant-addons-for-elementor' ),
-					'layout_3'      => esc_html__( 'Layout 3', 'anant-addons-for-elementor' ),
-					'layout_4'      => esc_html__( 'Layout 4', 'anant-addons-for-elementor' ), 
-					'layout_5'      => esc_html__( 'Layout 5', 'anant-addons-for-elementor' ),
+					'layout_2'      => esc_html__( 'Layout 2 (Pro)', 'anant-addons-for-elementor' ),
+					'layout_3'      => esc_html__( 'Layout 3 (Pro)', 'anant-addons-for-elementor' ),
+					'layout_4'      => esc_html__( 'Layout 4 (Pro)', 'anant-addons-for-elementor' ), 
+					'layout_5'      => esc_html__( 'Layout 5 (Pro)', 'anant-addons-for-elementor' ),
 				],
 			]
 		);
@@ -108,10 +108,10 @@ class AnantArchivePost extends \Elementor\Widget_Base {
 				'type'        => \Elementor\Controls_Manager::SELECT,
 				'default'     => 'one',
 				'options'     => [
-					'one'      => esc_html__( 'Style 1', 'anant-addons-for-elementor' ),
-					'two'      => esc_html__( 'Style 2', 'anant-addons-for-elementor' ),
-					'three'      => esc_html__( 'Style 3', 'anant-addons-for-elementor' ),
-					'four'      => esc_html__( 'Style 4', 'anant-addons-for-elementor' ), 
+					'one'      	=> esc_html__( 'Style 1', 'anant-addons-for-elementor' ),
+					'two'      	=> esc_html__( 'Style 2', 'anant-addons-for-elementor' ),
+					'three'    	=> esc_html__( 'Style 3', 'anant-addons-for-elementor' ),
+					'four'    	=> esc_html__( 'Style 4', 'anant-addons-for-elementor' ), 
 					'five'      => esc_html__( 'Style 5', 'anant-addons-for-elementor' ), 
  
 				],
@@ -139,18 +139,16 @@ class AnantArchivePost extends \Elementor\Widget_Base {
 			]
 		);
 
-		anant_number_responsive_control(
-			$this,
+		$this->add_responsive_control(
+			'post_count_per_row',
 			[
-				'key'         => 'post_count_per_row',
-				'label'       => 'Post Count Per Row',
-				'placeholder' => '3',
-				'min'         => 1,
-				'max'         => 6,
-				'default'     => '',
-				'selectors'       => [
-					'{{WRAPPER}} .ant-blog-grid' =>  'grid-template-columns: repeat({{VALUE}}, minmax(0, 1fr));',
-				], 
+				'label' => esc_html__( 'Post Count Per Row', 'anant-addons-for-elementor' ) .' <i class="eicon-pro-icon"></i>' ,
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'default' => '3',
+				'options' => [
+					'3' => esc_html__( '3', 'anant-addons-for-elementor' ),
+				],
+				'classes' => 'anant-pro-popup-notice',
 			]
 		);
 
@@ -303,7 +301,7 @@ class AnantArchivePost extends \Elementor\Widget_Base {
 		$this->add_control(
 			'search_query_list',
 			[
-				'label' => esc_html__( 'Include Post Type in Search Result', 'textdomain' ),
+				'label' => esc_html__( 'Include Post Type in Search Result', 'anant-addons-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::SELECT2,
 				'label_block' => true,
 				'multiple' => true,
@@ -566,17 +564,15 @@ class AnantArchivePost extends \Elementor\Widget_Base {
 			]
 		);
 
-		anant_switcher_control(
-			$this,
+		$this->add_control(
+			'anant_archive_post_pro_notice',
 			[
-				'key'       => 'show_all_number',
-				'label'     => 'Show All Number',
-				'on_label'  => 'Yes',
-				'off_label' => 'No',
-				'default' => 'yes',
-				'condition'   => [
-					'pagination_type' => ['numbers','numbers+previous/next']
-				],
+				'raw' => 'Only Available in <a href="https://anantaddons.com/" target="_blank">Pro Version!</a>',
+				'type' => \Elementor\Controls_Manager::RAW_HTML,
+				'content_classes' => 'anant-pro-notice',
+				'condition' => [ 
+                    'pagination_type!' => ['previous/next', 'none'],
+                ],
 			]
 		);
 
@@ -610,6 +606,8 @@ class AnantArchivePost extends \Elementor\Widget_Base {
 		); 
 
 		$this->end_controls_section();
+
+		anant_pro_promotion_controls($this);
 		
 		//STYLE
 		$this->start_controls_section(
@@ -621,15 +619,6 @@ class AnantArchivePost extends \Elementor\Widget_Base {
 		);
 
 		$slug = 'blog_box';
-
-		$this->start_controls_tabs( $slug.'_tabs' );
-
-		$this->start_controls_tab(
-			$slug.'_normal_style',
-			[
-				'label' => __( 'Normal', 'anant-addons-for-elementor' ),
-			]
-		);
 
 		$this->add_control(
 			$slug.'_bg_color',
@@ -723,110 +712,6 @@ class AnantArchivePost extends \Elementor\Widget_Base {
 			]
 		);
 
-		$this->end_controls_tab();
-
-		$this->start_controls_tab(
-			$slug.'_style_hover',
-			[
-				'label' => __( 'Hover', 'anant-addons-for-elementor' ),
-
-			]
-		);
-
-		$this->add_control(
-			$slug.'_bg_hover_color',
-			[
-				'label'     => __( 'Background Color', 'anant-addons-for-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}}  .'.$this->blog_card_class.':hover' => 'background-color: {{VALUE}}',
-				], 
-			]
-		);
-		 
-		$this->add_control(
-			$slug.'_inner_bg_hover_color',
-			[
-				'label'     => __( 'Inner Background Color', 'anant-addons-for-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .'.$this->blog_card_class.':hover .'.$this->blog_inner => 'background-color: {{VALUE}}',
-				],
-				'condition'   => [
-					'blog_design' => 'over',
-					'template_style' => ['layout_2','layout_4'],
-				],
-			]
-		);
-		 
-		anant_border_control(
-			$this,
-			[
-				'name'     => $slug.'_border_type_hover',
-				'label'    => 'Border Type',
-				'selector' => '{{WRAPPER}} .'.$this->blog_card_class.':hover',
-			]
-		);
-
-		anant_border_radius_control(
-			$this,
-			[
-				'key'       => $slug.'_border_radius_hover',
-				'label'     => 'Border Radius',
-				'selectors' => [
-					'{{WRAPPER}} .'.$this->blog_card_class.':hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		$this->add_responsive_control(
-			$slug.'_padding_hover',
-			[
-				'label'     => esc_html__('Padding', 'anant-addons-for-elementor'),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em' ],
-				'selectors' => [
-					'{{WRAPPER}} .'.$this->blog_card_class.':hover' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		$this->add_responsive_control(
-			$slug.'_inner_padding_hover',
-			[
-				'label'     => esc_html__('Inner Content Padding', 'anant-addons-for-elementor'),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em' ],
-				'selectors' => [
-					'{{WRAPPER}} .'.$this->blog_inner.':hover' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} .six .'.$this->blog_inner.':hover .'.$this->blog_category.'' => 'padding: 0 {{RIGHT}}{{UNIT}} 0 {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		$this->add_responsive_control(
-			$slug.'_margin_hover',
-			[
-				'label'     => esc_html__('Margin', 'anant-addons-for-elementor'),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em' ],
-				'selectors' => [
-					'{{WRAPPER}} .'.$this->blog_card_class.':hover' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		anant_box_shadow_control(
-			$this,
-			[
-				'key'      => $slug.'_box_shadow_hover',
-				'label'    => 'Box Shadow',
-				'selector' => '{{WRAPPER}}  .'.$this->blog_card_class.':hover',
-			]
-		);
-
-		$this->end_controls_tab();
-		$this->end_controls_tabs(); 
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -1037,7 +922,7 @@ class AnantArchivePost extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			$slug.'_overlay_opacity',
 			[
-				'label' => esc_html__( 'Opacity', 'elementor' ),
+				'label' => esc_html__( 'Opacity', 'anant-addons-for-elementor' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -1052,15 +937,6 @@ class AnantArchivePost extends \Elementor\Widget_Base {
 				'condition'   => [
 					'blog_design!' => 'card'
 				],
-			]
-		);
-	
-		$this->start_controls_tabs( $slug.'_tabs' );
-
-		$this->start_controls_tab(
-			$slug.'_normal_style',
-			[
-				'label' => __( 'Normal', 'anant-addons-for-elementor' ),
 			]
 		);
 		
@@ -1175,130 +1051,6 @@ class AnantArchivePost extends \Elementor\Widget_Base {
 			]
 		);
 
-		$this->end_controls_tab();
-
-		$this->start_controls_tab(
-			$slug.'_style_hover',
-			[
-				'label' => __( 'Hover', 'anant-addons-for-elementor' ),
-
-			]
-		);
-		
-		$this->add_responsive_control(
-			$slug.'_hover_image_width',
-			[
-				'label'           => __( 'Image Width', 'anant-addons-for-elementor' ),
-				'type'            => Controls_Manager::SLIDER,
-				'size_units'      => [ 'px', '%' ],
-				'range'           => [
-					'px' => [
-						'min' => 0,
-						'max' => 1200,
-					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					],
-				],
-				'devices'         => [ 'desktop', 'tablet', 'mobile' ],
-				'desktop_default' => [
-					'size' =>'' ,
-					'unit' => '%',
-				],
-				'tablet_default'  => [
-					'size' => '',
-					'unit' => '%',
-				],
-				'mobile_default'  => [
-					'size' => '',
-					'unit' => '%',
-				],
-				'selectors'       => [
-					'{{WRAPPER}} .'.$this->blog_img.':hover' => 'width: {{SIZE}}{{UNIT}};',
-				],
-			],
-		);
-
-		$this->add_responsive_control(
-			$slug.'_hover_image_height',
-			[
-				'label'           => __( 'Image Height', 'anant-addons-for-elementor' ),
-				'type'            => Controls_Manager::SLIDER,
-				'size_units'      => [ 'px', '%' ],
-				'range'           => [
-					'px' => [
-						'min' => 0,
-						'max' => 1200,
-					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					],
-				],
-				'devices'         => [ 'desktop', 'tablet', 'mobile' ],
-				'desktop_default' => [
-					'size' => '',
-					'unit' => 'px',
-				],
-				'tablet_default'  => [
-					'size' => '',
-					'unit' => 'px',
-				],
-				'mobile_default'  => [
-					'size' => '',
-					'unit' => 'px',
-				],
-				'selectors'       => [
-					'{{WRAPPER}} .'.$this->blog_img.':hover' => 'height: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
-
-
-		anant_border_control(
-			$this,
-			[
-				'name'     => $slug.'_border_type_hover',
-				'label'    => 'Border Type',
-				'selector' => '{{WRAPPER}} .'.$this->blog_img.':hover',
-			]
-		);
-
-		anant_border_radius_control(
-			$this,
-			[
-				'key'       => $slug.'_border_radius_hover',
-				'label'     => 'Border Radius',
-				'selectors' => [
-					'{{WRAPPER}} .'.$this->blog_img.':hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		$this->add_responsive_control(
-			$slug.'_margin_hover',
-			[
-				'label'     => esc_html__('Margin', 'anant-addons-for-elementor'),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em' ],
-				'selectors' => [
-					'{{WRAPPER}} .'.$this->blog_img.':hover' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		anant_box_shadow_control(
-			$this,
-			[
-				'key'      => $slug.'_box_shadow_hover',
-				'label'    => 'Box Shadow',
-				'selector' => '{{WRAPPER}}  .'.$this->blog_img.':hover',
-			]
-		);
-
-		$this->end_controls_tab();
-		$this->end_controls_tabs(); 
 		$this->end_controls_section();
 
 		// Blog Category
@@ -1333,16 +1085,43 @@ class AnantArchivePost extends \Elementor\Widget_Base {
 				],
 				'default'   => '',
 				'selectors' => [
-					'{{WRAPPER}} .'.$this->blog_category => 'text-align: {{VALUE}}',
+					'{{WRAPPER}} .'.$this->blog_category => 'justify-content: {{VALUE}}',
 				],
 			]
 		);
-		$this->start_controls_tabs( $slug.'_tabs' );
-
-		$this->start_controls_tab(
-			$slug.'_normal_style',
+		
+		$this->add_responsive_control(
+			$slug.'_gap',
 			[
-				'label' => __( 'Normal', 'anant-addons-for-elementor' ),
+				'label'           => __( 'Gap', 'anant-addons-for-elementor' ),
+				'type'            => Controls_Manager::SLIDER,
+				'size_units'      => [ 'px', '%' ],
+				'range'           => [
+					'px' => [
+						'min' => 0,
+						'max' => 120,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'devices'         => [ 'desktop', 'tablet', 'mobile' ],
+				'default' => [
+					'size' => 5,
+					'unit' => 'px',
+				],
+				'tablet_default'  => [
+					'size' => '',
+					'unit' => 'px',
+				],
+				'mobile_default'  => [
+					'size' => '',
+					'unit' => 'px',
+				],
+				'selectors'       => [
+					'{{WRAPPER}} .'.$this->blog_category => 'gap: {{SIZE}}{{UNIT}};',
+				],
 			]
 		);
 		
@@ -1353,6 +1132,28 @@ class AnantArchivePost extends \Elementor\Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}}  .'.$this->blog_category.' a' => 'color: {{VALUE}}',
+				],
+			]
+		);
+		
+		$this->add_control(
+			$slug.'_hover_color',
+			[
+				'label'     => __( 'Hover Color', 'anant-addons-for-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}}  .'.$this->blog_category.' a:hover' => 'color: {{VALUE}}',
+				],
+			]
+		);
+		
+		$this->add_control(
+			$slug.'_bg_hover_color',
+			[
+				'label'     => __( 'Background Hover Color', 'anant-addons-for-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}}  .'.$this->blog_category.' a:hover' => 'background-color: {{VALUE}}; border-color: {{VALUE}};',
 				],
 			]
 		);
@@ -1412,11 +1213,11 @@ class AnantArchivePost extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			$slug.'_margin',
 			[
-				'label'     => esc_html__('Margin', 'anant-addons-for-elementor'),
+				'label'     => esc_html__('Wrapper Margin', 'anant-addons-for-elementor'),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%', 'em' ],
 				'selectors' => [
-					'{{WRAPPER}} .'.$this->blog_category.' a' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .'.$this->blog_category => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -1429,100 +1230,6 @@ class AnantArchivePost extends \Elementor\Widget_Base {
 				'selector' => '{{WRAPPER}}  .'.$this->blog_category.' a',
 			]
 		);
-
-		$this->end_controls_tab();
-
-		$this->start_controls_tab(
-			$slug.'_style_hover',
-			[
-				'label' => __( 'Hover', 'anant-addons-for-elementor' ),
-
-			]
-		);
-
-		$this->add_control(
-			$slug.'_color_hover',
-			[
-				'label'     => __( 'Color', 'anant-addons-for-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}}  .'.$this->blog_category.' a:hover' => 'color: {{VALUE}}',
-				],
-			]
-		);
-		$this->add_control(
-			$slug.'_color_bg_hover',
-			[
-				'label'     => __( 'Background Color', 'anant-addons-for-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}}  .'.$this->blog_category.' a:hover' => 'background-color: {{VALUE}}',
-				],
-			]
-		);
-		anant_typography_control(
-			$this,
-			[
-				'name'     => $slug.'_typography_hover',
-				'label'    => 'Typography',
-				'selector' => '{{WRAPPER}}  .'.$this->blog_category.' a:hover',
-			]
-		);
-		anant_border_control(
-			$this,
-			[
-				'name'     => $slug.'_border_type_hover',
-				'label'    => 'Border Type',
-				'selector' => '{{WRAPPER}} .'.$this->blog_category.' a:hover',
-			]
-		);
-
-		anant_border_radius_control(
-			$this,
-			[
-				'key'       => $slug.'_border_radius_hover',
-				'label'     => 'Border Radius',
-				'selectors' => [
-					'{{WRAPPER}} .'.$this->blog_category.' a:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		$this->add_responsive_control(
-			$slug.'_padding_hover',
-			[
-				'label'     => esc_html__('Padding', 'anant-addons-for-elementor'),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em' ],
-				'selectors' => [
-					'{{WRAPPER}} .'.$this->blog_category.' a:hover' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		$this->add_responsive_control(
-			$slug.'_margin_hover',
-			[
-				'label'     => esc_html__('Margin', 'anant-addons-for-elementor'),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%', 'em' ],
-				'selectors' => [
-					'{{WRAPPER}} .'.$this->blog_category.' a:hover' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		anant_box_shadow_control(
-			$this,
-			[
-				'key'      => $slug.'_box_shadow_hover',
-				'label'    => 'Box Shadow',
-				'selector' => '{{WRAPPER}}  .'.$this->blog_category.' a:hover',
-			]
-		);
-
-		$this->end_controls_tab();
-		$this->end_controls_tabs(); 
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -2855,7 +2562,6 @@ class AnantArchivePost extends \Elementor\Widget_Base {
 		$show_category = $settings['show_category'];
 		$show_title = $settings['show_title'];
 		$show_read_more = $settings['show_read_more'];
-		$show_all_number = $settings['show_all_number'] == 'yes' ? true : false;
 
 		$title_html_tag = $settings['title_html_tag'];
 
@@ -3083,10 +2789,10 @@ class AnantArchivePost extends \Elementor\Widget_Base {
 				elseif(is_search()) : ?> 
 					<div class="anant-search-nothing-found">
 						<h2>
-							<?php esc_html_e( $settings['nothing_found_title'], 'anant-addons-for-elementor' ); ?>
+							<?php echo esc_html( $settings['nothing_found_title'] ); ?>
 						</h2>
 						<p>
-							<?php esc_html_e( $settings['nothing_found_desc'] , 'anant-addons-for-elementor' ); ?>
+							<?php echo esc_html( $settings['nothing_found_desc'] ); ?>
 						</p>
                     </div> <?php		
 				endif; ?>
@@ -3133,13 +2839,13 @@ class AnantArchivePost extends \Elementor\Widget_Base {
 		// Previous link
 		$prev_link = $this->custom_previous_posts_page_link( $paged );
 		if ( $prev_link ) {
-			echo "<li><a href='". $prev_link ."' class='page-numbers anant-pagi-pre-btn'>Previous</a></li>";
+			echo "<li><a href='". esc_url($prev_link) ."' class='page-numbers anant-pagi-pre-btn'>Previous</a></li>";
 		}
 	
 		// Next link
 		$next_link = $this->custom_next_posts_page_link( $paged, $max );
 		if ( $next_link ) {
-			echo "<li><a href='". $next_link ."' class='page-numbers'>Next</a></li>";
+			echo "<li><a href='". esc_url($next_link) ."' class='page-numbers'>Next</a></li>";
 		}
 	
 		echo '</ul></div>' . "\n";

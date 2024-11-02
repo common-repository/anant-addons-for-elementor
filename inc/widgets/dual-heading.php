@@ -212,7 +212,7 @@ class Anant_DualHeading extends \Elementor\Widget_Base {
 			[
 				'label' => esc_html__( 'Subtext', 'anant-addons-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::WYSIWYG,
-				'default' => __( '<p>Aenean ut turpis blandit eros convallis congue sit amet a libero. Mauris sed tempor felis. Nunc nisi massa, imperdiet ac metus quis, pharetra pulvinar sapien</p>', 'anant-addons-for-elementor' ),
+				'default' => esc_html__( 'Aenean ut turpis blandit eros convallis congue sit amet a libero. Mauris sed tempor felis. Nunc nisi massa, imperdiet ac metus quis, pharetra pulvinar sapien', 'anant-addons-for-elementor' ),
 				'placeholder' => esc_html__( 'Type your subtext here', 'anant-addons-for-elementor' ),
 			]
 		);
@@ -572,8 +572,8 @@ class Anant_DualHeading extends \Elementor\Widget_Base {
 		$after_title = $settings['after_title'];
 		$heading_html_tag = $settings['heading_html_tag'];
 		$link = $settings['card_link']['url'];
-		$target = $settings['card_link']['is_external'] ? ' target="_blank"' : '';
-		$nofollow = $settings['card_link']['nofollow'] ? ' rel="nofollow"' : '';
+		$target = $settings['card_link']['is_external'] ? ' target=_blank' : '';
+		$nofollow = $settings['card_link']['nofollow'] ? ' rel=nofollow' : '';
 		$show_heading = $settings['show_heading'];
 
 		$subtext = $settings['card_subtext'];

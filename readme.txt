@@ -3,9 +3,9 @@ Contributors: anantaddons, anantsites
 Tags: elementor,elementor widget, elementor form, woocommerce elementor, page builder
 Requires at least: 5.4
 Requires PHP: 7.0
-Tested up to: 6.6
-Stable tag: 1.0.4
-Version: 1.0.4
+Tested up to: 6.6.2
+Stable tag: 1.0.5
+Version: 1.0.5
 License: GPLv3 or later
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -178,6 +178,8 @@ Transform your Elementor page building experience with over 90 innovative essent
 👉 Rate us on [WordPress](https://wordpress.org/support/plugin/anant-addons-for-elementor/reviews/#new-post)
 
 == Changelog ==
+= 1.0.5 =
+* Fixed review issues.
 = 1.0.4 =
 * Fixed Styling control issues.
 = 1.0.3 =

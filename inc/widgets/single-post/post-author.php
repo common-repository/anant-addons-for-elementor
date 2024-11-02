@@ -421,8 +421,8 @@ class AnantPostAuthor extends \Elementor\Widget_Base {
 		<div class="anant-single-blog-author-box">
             <a class="ant-author-pic" href="<?php echo esc_url(get_author_posts_url( $author_id ));?>"><?php echo get_avatar( $author_id , 150); ?></a>
             <div class="author-meta">
-                <h4 class="title"><a href ="<?php echo esc_url(get_author_posts_url( $author_id ));?>"> <?php echo $author_by; ?> <?php esc_html_e($author_name); ?></a></h4>
-                <p class="desc"><?php esc_html_e($author_description); ?></p>
+                <h4 class="title"><a href ="<?php echo esc_url(get_author_posts_url( $author_id ));?>"> <?php echo esc_html( $author_by ); ?> <?php echo esc_html($author_name); ?></a></h4>
+                <p class="desc"><?php echo esc_html($author_description); ?></p>
              </div>
         </div>
 <?php }

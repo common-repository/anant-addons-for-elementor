@@ -23,7 +23,7 @@ class Selectize_Control extends Base_Data_Control {
 
         wp_enqueue_script('selectize', ANANT_URL . 'inc/controls/assets/selectize.js', array('jquery', 'jquery-ui-sortable'), '1.0', true);
         wp_enqueue_script('custom-selectize', ANANT_URL . 'inc/controls/assets/custom-selectize.js', array('selectize'), '1.0', true);
-        wp_enqueue_style('selectize', ANANT_URL . 'inc/controls/assets/selectize.css', array(), '');
+        wp_enqueue_style('selectize', ANANT_URL . 'inc/controls/assets/selectize.css', array(), ANANT_VERSION);
     }
 
     /**
@@ -45,7 +45,7 @@ class Selectize_Control extends Base_Data_Control {
         $control_uid = $this->get_control_uid();
         ?>
         <div class="elementor-control-field">
-            <label for="<?php echo $control_uid; ?>" class="elementor-control-title">{{{ data.label }}}</label>
+            <label for="<?php echo esc_attr($control_uid); ?>" class="elementor-control-title">{{{ data.label }}}</label>
             <div class="elementor-control-input-wrapper">
                 <#
                 var unstored = {};
@@ -61,7 +61,7 @@ class Selectize_Control extends Base_Data_Control {
                 }
                 #>
 
-                <select id="<?php echo $control_uid; ?>" class="elementor-selectize" {{ multiple }} data-setting="{{ data.name }}">
+                <select id="<?php echo esc_attr($control_uid); ?>" class="elementor-selectize" {{ multiple }} data-setting="{{ data.name }}">
                         <#
                         if(value){
                         _.each( value, function( key ) { #>

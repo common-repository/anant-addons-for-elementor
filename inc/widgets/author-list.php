@@ -131,15 +131,13 @@ class AnantAuthorlist extends \Elementor\Widget_Base {
 			]
 		);
 
-		$description = 'Aenean ut turpis blandit eros convallis congue sit amet a libero';
-
 		$this->add_control(
 			'card_description',
 			[
 				'label' => __( 'Description', 'anant-addons-for-elementor' ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
 				'rows' => 10,
-				'default' => __( $description, 'anant-addons-for-elementor' ),
+				'default' => esc_html__( 'Aenean ut turpis blandit eros convallis congue sit amet a libero', 'anant-addons-for-elementor' ),
 				'placeholder' => __( 'Type your description here', 'anant-addons-for-elementor' ),
 			]
 		);
@@ -1200,8 +1198,8 @@ class AnantAuthorlist extends \Elementor\Widget_Base {
 		$designation = $settings['card_designation'];
 		$label = $settings['card_label'];
 		$card_link = $settings['card_link']['url'];
-		$target = $settings['card_link']['is_external'] ? ' target="_blank"' : '';
-		$nofollow = $settings['card_link']['nofollow'] ? ' rel="nofollow"' : '';
+		$target = $settings['card_link']['is_external'] ? ' target=_blank' : '';
+		$nofollow = $settings['card_link']['nofollow'] ? ' rel=nofollow' : '';
 		$image_url = $settings['card_image']['url']; 
 
 		$template_style = $settings['template_style'];
@@ -1234,8 +1232,9 @@ class AnantAuthorlist extends \Elementor\Widget_Base {
 						<?php
 						if ( $show_title === 'yes' ) {
 							?>
-								<h2 class="title <?php echo esc_attr($this->author_list_heading_class )?>">
-								<a href="<?php echo esc_url($card_link )?>"><?php echo esc_html($title) ?></a></h2>
+							<h2 class="title <?php echo esc_attr($this->author_list_heading_class )?>">
+								<a href="<?php echo esc_url($card_link )?>" <?php echo esc_attr($target); ?> <?php echo esc_attr($nofollow); ?>><?php echo esc_html($title) ?></a>
+							</h2>
 							<?php
 						}
 						?>
@@ -1260,13 +1259,13 @@ class AnantAuthorlist extends \Elementor\Widget_Base {
 						<div class="ant-social-icons <?php echo esc_attr($this->author_list_social_icon_class )?>">
 							<?php
 							foreach ($socials as $key => $socials) { 
-							$author_social_link = $socials['author_social_link']['url'];
-							$target = $socials['author_social_link']['is_external'] ? ' target="_blank"' : '';
-							$nofollow = $socials['author_social_link']['nofollow'] ? ' rel="nofollow"' : '';
-							if ($key === 4 ) { break; }?>
-							<a href="<?php echo esc_url( $author_social_link ); ?>" <?php echo  $target ?> <?php echo  $nofollow ?>> 
-							<?php \Elementor\Icons_Manager::render_icon( $socials['author_social_icon'], [ 'aria-hidden' => 'true' ] ); ?>                            
-							</a>
+								$author_social_link = $socials['author_social_link']['url'];
+								$target = $socials['author_social_link']['is_external'] ? ' target=_blank' : '';
+								$nofollow = $socials['author_social_link']['nofollow'] ? ' rel=nofollow' : '';
+								if ($key === 4 ) { break; }?>
+								<a href="<?php echo esc_url( $author_social_link ); ?>" <?php echo esc_attr($target) ?> <?php echo esc_attr($nofollow) ?>> 
+									<?php \Elementor\Icons_Manager::render_icon( $socials['author_social_icon'], [ 'aria-hidden' => 'true' ] ); ?>                            
+								</a>
 							<?php } ?>
 						</div>
 						<?php
